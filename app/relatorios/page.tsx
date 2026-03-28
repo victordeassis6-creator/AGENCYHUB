@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { 
   FilePieChart, Download, FileText, 
-  TrendingUp, Users, Instagram, Share2, 
+  TrendingUp, Users, Smartphone, Share2, 
   Calendar, CheckCircle2, ChevronRight,
   Mail, Send, Sparkles, Filter, 
   ArrowUpRight, BarChart3, PieChart as PieChartIcon,
-  MousePointer2
+  MousePointer2, Brain
 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -33,7 +33,7 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="animate-fade-in-up">
+    <div className="space-y-10 lg:space-y-14 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">

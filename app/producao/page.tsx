@@ -24,7 +24,6 @@ export default function ProducaoPage() {
   ]
 
   return (
-  return (
     <div className="space-y-10 lg:space-y-14 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>

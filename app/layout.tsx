@@ -31,9 +31,9 @@ export default function RootLayout({
         <Sidebar />
         <div className="flex flex-1 flex-col sm:pl-64">
           <Header />
-          <main className="flex-1 p-8 lg:p-12 space-y-8 lg:space-y-12">
-            {children}
-          </main>
+      <main className="flex-1 p-8 lg:px-14 lg:pb-14 lg:pt-10 space-y-10 lg:space-y-14">
+        {children}
+      </main>
         </div>
         <Toaster />
       </body>
