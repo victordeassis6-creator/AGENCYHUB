@@ -10,10 +10,10 @@ import {
 
 export default function Dashboard() {
   const stats = [
-    { label: "Clientes Ativos", value: "12", icon: Users, trend: "+2", color: "text-indigo-400" },
-    { label: "MRR", value: "R$ 42.500", icon: BarChart3, trend: "+15%", color: "text-emerald-400" },
-    { label: "Tarefas Hoje", value: "24", icon: CheckSquare, trend: "85%", color: "text-purple-400" },
-    { label: "Posts Março", value: "156", icon: TrendingUp, trend: "+32%", color: "text-orange-400" },
+    { label: "Clientes Ativos", value: "12", icon: Users, trend: "+2", color: "text-violet-400" },
+    { label: "Faturamento Mensal", value: "R$ 42.500", icon: BarChart3, trend: "+15%", color: "text-pink-400" },
+    { label: "Tarefas Hoje", value: "24", icon: CheckSquare, trend: "85%", color: "text-violet-400" },
+    { label: "Posts Março", value: "156", icon: TrendingUp, trend: "+32%", color: "text-pink-400" },
   ]
 
   const pipelineStages = [
@@ -108,11 +108,11 @@ export default function Dashboard() {
         </div>
 
         <div className="lg:col-span-4 space-y-8">
-           <div className="p-10 rounded-[3rem] bg-gradient-to-br from-indigo-600 to-purple-700 text-white relative overflow-hidden group shadow-2xl shadow-indigo-500/30">
+           <div className="p-10 rounded-[3rem] bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600 text-white relative overflow-hidden group shadow-2xl shadow-purple-500/30">
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60 mb-6">Master Insight</p>
               <h4 className="text-2xl font-black italic leading-tight mb-8 tracking-tighter">Sua produção cresceu 12% nesta semana.</h4>
-              <button className="w-full py-4 bg-white text-indigo-700 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[0.98] transition-all shadow-xl">Analisar Estratégia</button>
+              <button className="w-full py-4 bg-white text-purple-700 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[0.98] transition-all shadow-xl">Analisar Estratégia</button>
            </div>
 
            <div className="p-8 rounded-[2.5rem] glass space-y-8">
