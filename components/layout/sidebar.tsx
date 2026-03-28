@@ -5,16 +5,18 @@ import { usePathname } from "next/navigation"
 import { 
   BarChart, Users, Calendar, LayoutDashboard, 
   Settings, CheckSquare, Sparkles, UserCircle, 
-  LogOut, ShieldCheck 
+  Briefcase, FolderOpen, FilePieChart
 } from "lucide-react"
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Clientes", href: "/clientes", icon: Users },
+  { name: "Vendas & Propostas", href: "/vendas", icon: Briefcase },
   { name: "Execução", href: "/execucao", icon: CheckSquare },
   { name: "Calendário", href: "/calendario", icon: Calendar },
   { name: "Inteligência (IA)", href: "/ia", icon: Sparkles },
-  { name: "Financeiro", href: "/financeiro", icon: BarChart },
+  { name: "Banco de Mídia", href: "/midia", icon: FolderOpen },
+  { name: "Relatórios", href: "/relatorios", icon: FilePieChart },
   { name: "Configurações", href: "/configuracoes", icon: Settings },
   { name: "Portal (Cliente)", href: "/portal", icon: UserCircle },
 ]
@@ -35,21 +37,21 @@ export function Sidebar() {
       </div>
 
       {/* Nav */}
-      <div className="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
+      <div className="flex-1 py-6 px-3 space-y-1 overflow-y-auto custom-scrollbar">
         {navItems.map((item) => {
           const isActive = pathname === item.href
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`nav-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13.5px] font-medium ${
+              className={`nav-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13.5px] font-medium transition-all ${
                 isActive
                   ? "bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-indigo-300 shadow-sm shadow-indigo-500/10 border border-indigo-500/20"
                   : "text-slate-400 hover:text-indigo-300 hover:bg-white/[0.04]"
               }`}
             >
               <item.icon className={`h-[18px] w-[18px] ${isActive ? "text-indigo-400" : ""}`} />
-              {item.name}
+              <span className="truncate">{item.name}</span>
               {isActive && (
                 <div className="ml-auto h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-sm shadow-indigo-400/50" />
               )}
