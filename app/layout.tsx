@@ -27,14 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${outfit.variable} ${inter.variable}`}>
-      <body className="font-outfit min-h-screen flex antialiased" style={{ background: 'linear-gradient(160deg, #0f1729 0%, #162044 50%, #1a1040 100%)' }}>
+      <body className="font-outfit min-h-screen flex antialiased">
         <Sidebar />
         <div className="flex flex-1 flex-col sm:pl-64">
           <Header />
-          <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
-            <div className="mx-auto max-w-7xl w-full">
-              {children}
-            </div>
+          <main className="flex-1">
+            {children}
           </main>
         </div>
         <Toaster />
