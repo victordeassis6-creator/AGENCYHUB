@@ -13,7 +13,7 @@ import {
   Target, Megaphone, Activity, Fingerprint,
   BarChart3
 } from "lucide-react"
-import { useChat } from "ai/react"
+import { useChat } from "@ai-sdk/react"
 import { toast } from "sonner"
 
 export default function IAModulePage() {
@@ -132,7 +132,7 @@ export default function IAModulePage() {
                   <div className="space-y-6">
                      <div className="space-y-2">
                         <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Objetivo Principal</Label>
-                        <Select value={adObjective} onValueChange={setAdObjective}>
+                        <Select value={adObjective} onValueChange={(val: string | null) => setAdObjective(val || "leads")}>
                            <SelectTrigger className="bg-black/40 border-white/5 h-12 rounded-xl text-white"><SelectValue /></SelectTrigger>
                            <SelectContent className="bg-[#111113] border-white/5">
                               <SelectItem value="leads">Conversão WhatsApp</SelectItem>

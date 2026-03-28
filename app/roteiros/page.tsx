@@ -12,7 +12,7 @@ import {
   History, Copy, CheckCircle2, 
   Video, Brain, Zap, Target
 } from "lucide-react"
-import { useChat } from "ai/react"
+import { useChat } from "@ai-sdk/react"
 import { toast } from "sonner"
 
 export default function RoteirosPage() {
