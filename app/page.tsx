@@ -7,6 +7,7 @@ import {
   Camera, Scissors, Eye, CheckCircle2, ChevronRight,
   Zap, Star
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 export default function Dashboard() {
