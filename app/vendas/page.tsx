@@ -26,9 +26,9 @@ export default function VendasDocsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <Briefcase className="w-6 h-6 text-indigo-400" /> Vendas & Propostas
+            <Briefcase className="w-6 h-6 text-indigo-400" /> Vendas e Dinheiro
           </h2>
-          <p className="text-slate-500 text-sm font-medium">Transforme prospects em clientes pagantes com um clique.</p>
+          <p className="text-slate-500 text-sm font-medium">Veja quanto dinheiro está entrando e novos planos.</p>
         </div>
         <Button onClick={() => toast("Criar Proposta...")} className="btn-lift bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl px-6 h-11">
           <Plus className="w-4 h-4 mr-2" /> Nova Proposta
