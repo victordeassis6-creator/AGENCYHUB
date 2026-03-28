@@ -32,9 +32,9 @@ export default function RoteirosPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <FileText className="w-6 h-6 text-pink-400" /> Gerador de Roteiros IA
+            <FileText className="w-6 h-6 text-pink-400" /> Criador de Ideias com IA
           </h2>
-          <p className="text-slate-500 text-sm font-medium">Crie roteiros virais e estratégicos em segundos.</p>
+          <p className="text-slate-500 text-sm font-medium">Crie ideias incríveis para seus vídeos em segundos.</p>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export default function RoteirosPage() {
         <div className="lg:col-span-2 space-y-6">
           <Card className="glass border-white/[0.06] rounded-2xl overflow-hidden shadow-xl">
              <CardHeader className="pb-4">
-                <CardTitle className="text-white text-base flex items-center gap-2"><Zap className="w-4 h-4 text-pink-400" /> Briefing do Vídeo</CardTitle>
+                <CardTitle className="text-white text-base flex items-center gap-2"><Zap className="w-4 h-4 text-pink-400" /> Explicação do Vídeo</CardTitle>
                 <CardDescription className="text-slate-500 text-xs font-medium">O que a IA precisa saber?</CardDescription>
              </CardHeader>
              <CardContent className="space-y-4">
@@ -58,11 +58,11 @@ export default function RoteirosPage() {
                    </Select>
                 </div>
                 <div className="space-y-2">
-                   <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Produto/Serviço</Label>
+                   <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que vamos vender?</Label>
                    <Input placeholder="Ex: Novo Cheese Bacon" className="glass border-white/10 h-10 rounded-xl text-xs text-white" />
                 </div>
                 <div className="space-y-2">
-                   <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Diferencial (Gancho)</Label>
+                   <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que tem de especial? (Gancho)</Label>
                    <Textarea placeholder="Ex: Bacon defumado em madeira de macieira" className="glass border-white/10 rounded-xl text-xs text-white min-h-[80px]" />
                 </div>
                 <Button onClick={handleGenerate} disabled={isGenerating} className="w-full btn-lift h-11 bg-gradient-to-r from-pink-500 to-violet-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-pink-500/20 shadow-glow">
@@ -128,9 +128,9 @@ export default function RoteirosPage() {
                          <div className="h-8 w-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400">
                             <Video className="w-4 h-4" />
                          </div>
-                         <p className="text-[10px] font-black text-white uppercase tracking-widest">Enviar direto para a FILA de GRAVAÇÃO?</p>
+                         <p className="text-[10px] font-black text-white uppercase tracking-widest">Enviar direto para o pessoal da GRAVAÇÃO?</p>
                       </div>
-                      <Button size="sm" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[9px] uppercase tracking-widest px-6 h-8 rounded-lg">Confirmar Envio</Button>
+                      <Button size="sm" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[9px] uppercase tracking-widest px-6 h-8 rounded-lg">Mandar agora!</Button>
                    </div>
                 </div>
              )}

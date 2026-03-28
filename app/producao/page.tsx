@@ -28,9 +28,9 @@ export default function ProducaoPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <Camera className="w-6 h-6 text-indigo-400" /> Produção & Gravação
+            <Camera className="w-6 h-6 text-indigo-400" /> Dia de Gravação
           </h2>
-          <p className="text-slate-500 text-sm font-medium">Agendas, checklists de campo e gestão de visitas externas.</p>
+          <p className="text-slate-500 text-sm font-medium">Horários e o que levar para as filmagens.</p>
         </div>
         <Button onClick={() => toast("Agendar Visita...")} className="btn-lift bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl px-6 h-11">
           <Plus className="w-4 h-4 mr-2" /> Agendar Gravação
@@ -42,7 +42,7 @@ export default function ProducaoPage() {
         <div className="lg:col-span-2 space-y-6">
           <Card className="glass border-white/[0.06] rounded-2xl overflow-hidden shadow-xl">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg font-bold text-white flex items-center gap-2"><CalendarIcon className="w-5 h-5 text-indigo-400" /> Visitas de Hoje</CardTitle>
+              <CardTitle className="text-lg font-bold text-white flex items-center gap-2"><CalendarIcon className="w-5 h-5 text-indigo-400" /> Onde vamos hoje?</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
                <div className="divide-y divide-white/[0.06]">
@@ -96,10 +96,10 @@ export default function ProducaoPage() {
               <div className="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500" />
               <CardHeader className="pb-4">
                  <CardTitle className="text-white text-md flex items-center justify-between">
-                    Checklist de Campo
+                    O que não esquecer de filmar
                     <Badge variant="outline" className="text-[9px] border-indigo-500/40 text-indigo-400">BURGER HOUSE</Badge>
                  </CardTitle>
-                 <CardDescription className="text-slate-500 text-xs font-bold leading-tight">O que precisa ser captado hoje (baseado nos roteiros).</CardDescription>
+                 <CardDescription className="text-slate-500 text-xs font-bold leading-tight">Lista do que precisa ser filmado hoje.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                  {shootingChecklist.map((item) => (
