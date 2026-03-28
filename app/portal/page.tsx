@@ -16,7 +16,6 @@ export default function ClientPortalPage() {
   ]
 
   return (
-  return (
     <div className="animate-fade-in-up">
       {/* Premium Banner */}
       <div className="group relative overflow-hidden rounded-[2.5rem] bg-[#111113] border border-[#1e1e20] p-12 lg:p-16 flex flex-col md:flex-row md:items-center justify-between gap-8">

@@ -16,7 +16,6 @@ export default function ClientesPage() {
   ]
 
   return (
-  return (
     <div className="animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-in-up">
         <div>

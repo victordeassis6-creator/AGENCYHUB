@@ -15,7 +15,6 @@ export default function ExecucaoPage() {
   ]
 
   return (
-  return (
     <div className="space-y-8 lg:space-y-12">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-in-up">
         <div>
