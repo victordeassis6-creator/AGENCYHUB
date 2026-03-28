@@ -1,0 +1,204 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==========================================
+// TENANT & USERS
+// ==========================================
+
+model Agency {
+  id        String   @id @default(cuid())
+  name      String
+  logoUrl   String?
+  cnpj      String?
+  ownerId   String? // Reference to User
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users     User[]
+  clients   Client[]
+  contracts Contract[]
+}
+
+enum Role {
+  AGENCY_ADMIN
+  COLLABORATOR
+  CLIENT_USER
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(COLLABORATOR)
+  agencyId     String
+  clientId     String? // If role is CLIENT_USER, linked to a specific Client
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  agency Agency  @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  client Client? @relation("ClientUsers", fields: [clientId], references: [id], onDelete: SetNull)
+  tasks  Task[]  @relation("AssignedTasks")
+}
+
+// ==========================================
+// CLIENT MANAGEMENT
+// ==========================================
+
+enum ClientStatus {
+  ACTIVE
+  PAUSED
+  CANCELED
+}
+
+model Client {
+  id             String       @id @default(cuid())
+  name           String
+  niche          String? // e.g. hamburgueria, hotel
+  address        String?
+  targetAudience String?
+  menuUrl        String? // PDF upload
+  socialMedia    String? // JSON or comma separated string
+  goal           String?
+  status         ClientStatus @default(ACTIVE)
+
+  agencyId String
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+
+  users         User[]         @relation("ClientUsers")
+  contracts     Contract[]
+  contents      Content[]
+  tasks         Task[]
+  taskTemplates TaskTemplate[]
+  payments      Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ==========================================
+// FINANCIAL & CONTRACTS
+// ==========================================
+
+model Contract {
+  id      String  @id @default(cuid())
+  value   Decimal @db.Decimal(10, 2)
+  dueDate Int // day of the month
+  fileUrl String? // uploaded PDF
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  agencyId String
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+
+  payments Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  OVERDUE
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  amount      Decimal       @db.Decimal(10, 2)
+  status      PaymentStatus @default(PENDING)
+  dueDate     DateTime
+  paidAt      DateTime?
+  paymentLink String? // Mercado Pago link
+
+  clientId   String
+  client     Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  contractId String?
+  contract   Contract? @relation(fields: [contractId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ==========================================
+// EXECUTION TRACKER (TASKS)
+// ==========================================
+
+enum TaskFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+model TaskTemplate {
+  id        String        @id @default(cuid())
+  title     String // e.g. "3 stories/day"
+  type      String // "STORY", "REEL", "POST"
+  quantity  Int
+  frequency TaskFrequency
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum TaskStatus {
+  PENDING
+  DONE
+}
+
+model Task {
+  id     String     @id @default(cuid())
+  title  String
+  date   DateTime // date for execution
+  status TaskStatus @default(PENDING)
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  assigneeId String?
+  assignee   User?   @relation("AssignedTasks", fields: [assigneeId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ==========================================
+// CONTENT CALENDAR & AI
+// ==========================================
+
+enum ContentStatus {
+  IDEA
+  PRODUCTION
+  APPROVED
+  PUBLISHED
+}
+
+model Content {
+  id     String        @id @default(cuid())
+  title  String
+  type   String // "POST", "REEL", "STORY", "AD"
+  status ContentStatus @default(IDEA)
+  date   DateTime? // scheduled date
+
+  caption  String? @db.Text
+  hashtags String?
+  notes    String? @db.Text
+  mediaUrl String?
+
+  isAiGenerated Boolean @default(false)
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
