@@ -20,7 +20,7 @@ export default function Dashboard() {
     { label: "Roteiro (IA)", count: 8, icon: Zap, color: "text-pink-400" },
     { label: "Gravação", count: 5, icon: Camera, color: "text-violet-400" },
     { label: "Edição", count: 12, icon: Scissors, color: "text-pink-400" },
-    { label: "Aprovação", count: 4, icon: Eye, color: "text-violet-400" },
+    { label: "Postado", count: 4, icon: Eye, color: "text-violet-400" },
     { label: "Finalizado", count: 32, icon: CheckCircle2, color: "text-pink-400" },
   ]
 
