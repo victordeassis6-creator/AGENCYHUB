@@ -5,13 +5,16 @@ import { usePathname } from "next/navigation"
 import { 
   BarChart, Users, Calendar, LayoutDashboard, 
   Settings, CheckSquare, Sparkles, UserCircle, 
-  Briefcase, FolderOpen, FilePieChart
+  Briefcase, FolderOpen, FilePieChart, 
+  Video, Scissors, Camera
 } from "lucide-react"
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Clientes", href: "/clientes", icon: Users },
-  { name: "Vendas & Propostas", href: "/vendas", icon: Briefcase },
+  { name: "Vendas", href: "/vendas", icon: Briefcase },
+  { name: "Produção", href: "/producao", icon: Camera },
+  { name: "Edição", href: "/edicao", icon: Scissors },
   { name: "Execução", href: "/execucao", icon: CheckSquare },
   { name: "Calendário", href: "/calendario", icon: Calendar },
   { name: "Inteligência (IA)", href: "/ia", icon: Sparkles },
