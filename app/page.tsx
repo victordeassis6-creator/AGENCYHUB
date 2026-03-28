@@ -39,7 +39,39 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Stats Grid - Defined Containers v3.4 */}
+      {/* Symmetrical Notification Bar */}
+      <div className="grid md:grid-cols-2 gap-6 -mt-6">
+        <div className="p-8 rounded-[2.5rem] bg-gradient-to-r from-violet-600/20 to-pink-500/20 border border-white/10 backdrop-blur-3xl flex items-center justify-between group hover:border-pink-500/40 transition-all duration-500 shadow-2xl">
+           <div className="flex items-center gap-6">
+              <div className="h-14 w-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                 <Camera className="w-6 h-6 text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.6)]" />
+              </div>
+              <div>
+                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-pink-200/50 mb-1">Próxima Filmagem</p>
+                 <h3 className="text-xl font-black text-white italic tracking-tighter">Terça-feira, 31 de Março</h3>
+              </div>
+           </div>
+           <div className="text-right">
+              <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest mb-1">Horário</p>
+              <p className="text-lg font-black text-pink-400 italic">14:00h</p>
+           </div>
+        </div>
+
+        <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-3xl flex items-center justify-between group hover:border-violet-500/40 transition-all duration-500 shadow-2xl">
+           <div className="flex items-center gap-6">
+              <div className="h-14 w-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                 <Star className="w-6 h-6 text-violet-400 drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]" />
+              </div>
+              <div>
+                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-200/50 mb-1">Destaque do Dia</p>
+                 <h3 className="text-xl font-black text-white italic tracking-tighter">Meta Batida: +15 Vídeos</h3>
+              </div>
+           </div>
+           <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full border border-white/10 text-white/40 group-hover:text-violet-400">
+              <ArrowUpRight className="w-5 h-5" />
+           </Button>
+        </div>
+      </div>
       <div className="grid gap-6 md:grid-cols-4">
         {stats.map((stat, i) => (
           <Link key={i} href={stat.href} className="group relative overflow-hidden p-8 rounded-[2.5rem] glass-glow border-white/[0.15] hover:scale-[1.02] duration-500 min-h-[180px] flex flex-col justify-between cursor-pointer">
