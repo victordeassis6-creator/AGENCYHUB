@@ -12,19 +12,38 @@ import {
   History, Copy, CheckCircle2, 
   Video, Brain, Zap, Target
 } from "lucide-react"
+import { useChat } from "ai/react"
 import { toast } from "sonner"
 
 export default function RoteirosPage() {
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [script, setScript] = useState("")
+  const [product, setProduct] = useState("")
+  const [usp, setUsp] = useState("")
+  const [objective, setObjective] = useState("reels")
+
+  const { messages, append, isLoading, setMessages } = useChat({
+    api: '/api/chat',
+    onFinish: () => toast.success("Roteiro gerado com sucesso! ✨"),
+    onError: () => toast.error("Erro ao gerar roteiro. Verifique suas chaves de API.")
+  })
+
+  // The last message from the assistant is our script
+  const script = messages.length > 0 && messages[messages.length - 1].role === 'assistant' 
+    ? messages[messages.length - 1].content 
+    : ""
 
   const handleGenerate = () => {
-    setIsGenerating(true)
-    setTimeout(() => {
-      setScript(`[POV] O SEGREDO DO BURGER PERFEITO 🍔\n\n[Cena 1] Close-up no queijo derretendo (Slow motion).\n[Áudio] Som de grelha quente.\n\n[Cena 2] Narrador olha para a câmera e dá a primeira mordida.\n[Legenda] "Você não vai acreditar no que tem aqui dentro..."\n\n[CTA] Link na bio para pedir o seu!`)
-      setIsGenerating(false)
-      toast.success("Roteiro gerado com sucesso! ✨")
-    }, 2000)
+    if (!product || !usp) {
+      toast.error("Por favor, preencha o produto e o diferencial.")
+      return
+    }
+    
+    setMessages([]) // Clear previous chat
+    append({
+      role: 'user',
+      content: `Gere um roteiro para: ${product}. Diferencial: ${usp}. Objetivo: ${objective}`
+    }, {
+      data: { type: 'script' }
+    })
   }
 
   return (
@@ -46,28 +65,38 @@ export default function RoteirosPage() {
                 <CardDescription className="text-slate-500 text-xs font-medium">O que a IA precisa saber?</CardDescription>
              </CardHeader>
              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                   <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Objetivo</Label>
-                   <Select defaultValue="reels">
-                      <SelectTrigger className="glass border-white/10 h-10 rounded-xl text-xs text-white"><SelectValue /></SelectTrigger>
-                      <SelectContent className="bg-[#0c081a] border-white/10">
-                         <SelectItem value="reels">Reels Viral (Engajamento)</SelectItem>
-                         <SelectItem value="ads">Anúncio (Conversão)</SelectItem>
-                         <SelectItem value="educational">Educativo (Autoridade)</SelectItem>
-                      </SelectContent>
-                   </Select>
-                </div>
-                <div className="space-y-2">
-                   <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que vamos vender?</Label>
-                   <Input placeholder="Ex: Novo Cheese Bacon" className="glass border-white/10 h-10 rounded-xl text-xs text-white" />
-                </div>
-                <div className="space-y-2">
-                   <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que tem de especial? (Gancho)</Label>
-                   <Textarea placeholder="Ex: Bacon defumado em madeira de macieira" className="glass border-white/10 rounded-xl text-xs text-white min-h-[80px]" />
-                </div>
-                <Button onClick={handleGenerate} disabled={isGenerating} className="w-full btn-lift h-11 bg-gradient-to-r from-pink-500 to-violet-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-pink-500/20 shadow-glow">
-                   {isGenerating ? "Processando..." : "Gerar Roteiro Mágico ✨"}
-                </Button>
+                 <div className="space-y-2">
+                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Objetivo</Label>
+                    <Select value={objective} onValueChange={setObjective}>
+                       <SelectTrigger className="glass border-white/10 h-10 rounded-xl text-xs text-white"><SelectValue /></SelectTrigger>
+                       <SelectContent className="bg-[#0c081a] border-white/10">
+                          <SelectItem value="reels">Reels Viral (Engajamento)</SelectItem>
+                          <SelectItem value="ads">Anúncio (Conversão)</SelectItem>
+                          <SelectItem value="educational">Educativo (Autoridade)</SelectItem>
+                       </SelectContent>
+                    </Select>
+                 </div>
+                 <div className="space-y-2">
+                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que vamos vender?</Label>
+                    <Input 
+                      placeholder="Ex: Novo Cheese Bacon" 
+                      value={product}
+                      onChange={(e) => setProduct(e.target.value)}
+                      className="glass border-white/10 h-10 rounded-xl text-xs text-white" 
+                    />
+                 </div>
+                 <div className="space-y-2">
+                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que tem de especial? (Gancho)</Label>
+                    <Textarea 
+                      placeholder="Ex: Bacon defumado em madeira de macieira" 
+                      value={usp}
+                      onChange={(e) => setUsp(e.target.value)}
+                      className="glass border-white/10 rounded-xl text-xs text-white min-h-[80px]" 
+                    />
+                 </div>
+                 <Button onClick={handleGenerate} disabled={isLoading} className="w-full btn-lift h-11 bg-gradient-to-r from-pink-500 to-violet-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-pink-500/20 shadow-glow">
+                    {isLoading ? "Processando..." : "Gerar Roteiro Mágico ✨"}
+                 </Button>
              </CardContent>
           </Card>
 
@@ -101,21 +130,21 @@ export default function RoteirosPage() {
                 )}
              </CardHeader>
              <CardContent className="p-8">
-                {!script && !isGenerating ? (
-                   <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-20">
-                      <div className="h-16 w-16 bg-white/[0.04] border border-white/10 rounded-2xl flex items-center justify-center text-slate-600">
-                         <Target className="w-8 h-8" />
-                      </div>
-                      <p className="text-slate-500 text-sm font-medium max-w-xs">Preencha o briefing ao lado para gerar seu roteiro estratégico.</p>
-                   </div>
-                ) : isGenerating ? (
-                   <div className="space-y-4 py-10">
-                      <div className="h-4 bg-white/10 rounded-full w-3/4 animate-pulse" />
-                      <div className="h-4 bg-white/10 rounded-full w-1/2 animate-pulse" />
-                      <div className="h-4 bg-white/10 rounded-full w-5/6 animate-pulse" />
-                      <div className="h-20 bg-white/10 rounded-2xl w-full animate-pulse mt-8" />
-                   </div>
-                ) : (
+                 {!script && !isLoading ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-20">
+                       <div className="h-16 w-16 bg-white/[0.04] border border-white/10 rounded-2xl flex items-center justify-center text-slate-600">
+                          <Target className="w-8 h-8" />
+                       </div>
+                       <p className="text-slate-500 text-sm font-medium max-w-xs">Preencha o briefing ao lado para gerar seu roteiro estratégico.</p>
+                    </div>
+                 ) : isLoading && !script ? (
+                    <div className="space-y-4 py-10">
+                       <div className="h-4 bg-white/10 rounded-full w-3/4 animate-pulse" />
+                       <div className="h-4 bg-white/10 rounded-full w-1/2 animate-pulse" />
+                       <div className="h-4 bg-white/10 rounded-full w-5/6 animate-pulse" />
+                       <div className="h-20 bg-white/10 rounded-2xl w-full animate-pulse mt-8" />
+                    </div>
+                 ) : (
                    <div className="animate-fade-in whitespace-pre-wrap text-slate-200 font-medium leading-relaxed text-sm lg:text-base">
                       {script}
                    </div>
