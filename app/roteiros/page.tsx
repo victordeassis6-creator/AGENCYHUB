@@ -10,26 +10,43 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { 
   FileText, Sparkles, Send, 
   History, Copy, CheckCircle2, 
-  Video, Brain, Zap, Target
+  Video, Brain, Zap, Target, Loader2
 } from "lucide-react"
 import { useChat } from "@ai-sdk/react"
+import { DefaultChatTransport } from "ai"
 import { toast } from "sonner"
+
+function getTextFromMessages(messages: any[]): string {
+  const last = messages[messages.length - 1]
+  if (!last || last.role !== 'assistant') return ""
+  if (last.content) return last.content
+  if (last.parts) {
+    return last.parts
+      .filter((p: any) => p.type === 'text')
+      .map((p: any) => p.text)
+      .join('')
+  }
+  return ""
+}
 
 export default function RoteirosPage() {
   const [product, setProduct] = useState("")
   const [usp, setUsp] = useState("")
   const [objective, setObjective] = useState("reels")
 
-  const { messages, append, isLoading, setMessages } = useChat({
-    api: '/api/chat',
-    onFinish: () => toast.success("Roteiro gerado com sucesso! ✨"),
+  const { messages, sendMessage, status, setMessages } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+      body: { type: 'script' }
+    }),
+    onFinish: () => toast.success("Roteiro pronto! ✨"),
     onError: () => toast.error("Erro ao gerar roteiro. Verifique suas chaves de API.")
   })
 
+  const isBusy = status === 'submitted' || status === 'streaming'
+
   // The last message from the assistant is our script
-  const script = messages.length > 0 && messages[messages.length - 1].role === 'assistant' 
-    ? messages[messages.length - 1].content 
-    : ""
+  const script = getTextFromMessages(messages)
 
   const handleGenerate = () => {
     if (!product || !usp) {
@@ -38,11 +55,8 @@ export default function RoteirosPage() {
     }
     
     setMessages([]) // Clear previous chat
-    append({
-      role: 'user',
-      content: `Gere um roteiro para: ${product}. Diferencial: ${usp}. Objetivo: ${objective}`
-    }, {
-      data: { type: 'script' }
+    sendMessage({
+      text: `Gere um roteiro para: ${product}. Diferencial: ${usp}. Objetivo: ${objective}`
     })
   }
 
@@ -50,62 +64,64 @@ export default function RoteirosPage() {
     <div className="space-y-10 lg:space-y-14 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <FileText className="w-6 h-6 text-pink-400" /> Criador de Ideias com IA
+          <h2 className="text-3xl font-black italic tracking-tighter text-white flex items-center gap-2">
+            Ideias para Vídeos. <Sparkles className="w-7 h-7 text-pink-400" />
           </h2>
-          <p className="text-slate-500 text-sm font-medium">Crie ideias incríveis para seus vídeos em segundos.</p>
+          <p className="text-slate-500 text-xs font-bold uppercase tracking-widest pl-1">Crie roteiros incríveis em segundos com nossa IA.</p>
         </div>
       </div>
 
       <div className="grid lg:grid-cols-5 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <Card className="glass border-white/[0.06] rounded-2xl overflow-hidden shadow-xl">
-             <CardHeader className="pb-4">
-                <CardTitle className="text-white text-base flex items-center gap-2"><Zap className="w-4 h-4 text-pink-400" /> Explicação do Vídeo</CardTitle>
-                <CardDescription className="text-slate-500 text-xs font-medium">O que a IA precisa saber?</CardDescription>
+          <Card className="glass border-white/[0.06] rounded-[2.5rem] overflow-hidden shadow-2xl bg-[#111113]">
+             <CardHeader className="p-8 pb-4">
+                <CardTitle className="text-white text-lg font-black italic flex items-center gap-2 tracking-tighter">
+                  O que vamos gravar?
+                </CardTitle>
+                <CardDescription className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Preencha o básico para a IA trabalhar.</CardDescription>
              </CardHeader>
-             <CardContent className="space-y-4">
-                 <div className="space-y-2">
-                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Objetivo</Label>
-                    <Select value={objective} onValueChange={setObjective}>
-                       <SelectTrigger className="glass border-white/10 h-10 rounded-xl text-xs text-white"><SelectValue /></SelectTrigger>
-                       <SelectContent className="bg-[#0c081a] border-white/10">
-                          <SelectItem value="reels">Reels Viral (Engajamento)</SelectItem>
-                          <SelectItem value="ads">Anúncio (Conversão)</SelectItem>
-                          <SelectItem value="educational">Educativo (Autoridade)</SelectItem>
+             <CardContent className="p-8 space-y-6">
+                 <div className="space-y-3">
+                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Para onde é esse vídeo?</Label>
+                    <Select value={objective} onValueChange={(val) => setObjective(val || "reels")}>
+                       <SelectTrigger className="bg-black/40 border-white/10 h-12 rounded-2xl text-white font-bold"><SelectValue /></SelectTrigger>
+                       <SelectContent className="bg-[#111113] border-white/10 rounded-2xl">
+                          <SelectItem value="reels" className="rounded-xl font-bold py-3 text-xs">Reels Viral (Engajamento)</SelectItem>
+                          <SelectItem value="ads" className="rounded-xl font-bold py-3 text-xs">Anúncio (Vender mais)</SelectItem>
+                          <SelectItem value="educational" className="rounded-xl font-bold py-3 text-xs">Aula / Dica (Autoridade)</SelectItem>
                        </SelectContent>
                     </Select>
                  </div>
-                 <div className="space-y-2">
-                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que vamos vender?</Label>
+                 <div className="space-y-3">
+                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">O que é o produto/serviço?</Label>
                     <Input 
-                      placeholder="Ex: Novo Cheese Bacon" 
+                      placeholder="Ex: Novo Combo X-Bacon" 
                       value={product}
                       onChange={(e) => setProduct(e.target.value)}
-                      className="glass border-white/10 h-10 rounded-xl text-xs text-white" 
+                      className="bg-black/40 border-white/10 h-12 rounded-2xl text-white font-bold" 
                     />
                  </div>
-                 <div className="space-y-2">
-                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">O que tem de especial? (Gancho)</Label>
+                 <div className="space-y-3">
+                    <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">O que tem de legal nele?</Label>
                     <Textarea 
-                      placeholder="Ex: Bacon defumado em madeira de macieira" 
+                      placeholder="Ex: Bacon defumado artesanalmente..." 
                       value={usp}
                       onChange={(e) => setUsp(e.target.value)}
-                      className="glass border-white/10 rounded-xl text-xs text-white min-h-[80px]" 
+                      className="bg-black/40 border-white/10 rounded-2xl text-white font-medium min-h-[100px]" 
                     />
                  </div>
-                 <Button onClick={handleGenerate} disabled={isLoading} className="w-full btn-lift h-11 bg-gradient-to-r from-pink-500 to-violet-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-pink-500/20 shadow-glow">
-                    {isLoading ? "Processando..." : "Gerar Roteiro Mágico ✨"}
+                 <Button onClick={handleGenerate} disabled={isBusy} className="w-full h-14 bg-gradient-to-r from-pink-500 to-violet-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-pink-500/20">
+                    {isBusy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Pensando...</> : "Gerar Roteiro Mágico ✨"}
                  </Button>
              </CardContent>
           </Card>
 
-          <Card className="glass border-white/[0.06] rounded-2xl p-5">
-             <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2"><History className="w-3.5 h-3.5" /> Últimos Gerados</h3>
-             <div className="space-y-2">
-                {["Reels: Review de Burger", "Ads: Promoção Sushi", "POV: Bastidores Docinho"].map((item, i) => (
-                   <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/5 text-[11px] text-slate-400 font-medium hover:bg-white/[0.08] cursor-pointer transition-all truncate italic">
-                      {item}
+          <Card className="glass border-white/[0.06] rounded-[2.5rem] p-8 bg-[#111113]">
+             <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6 flex items-center gap-2 italic"><History className="w-4 h-4" /> Histórico</h3>
+             <div className="space-y-3">
+                {["Review de Burger", "Promoção Sushi", "Bastidores Docinho"].map((item, i) => (
+                   <div key={i} className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-[11px] text-slate-400 font-bold hover:bg-white/[0.08] cursor-pointer transition-all truncate italic flex items-center gap-3">
+                      <div className="h-2 w-2 rounded-full bg-pink-500/40" /> {item}
                    </div>
                 ))}
              </div>
@@ -113,53 +129,56 @@ export default function RoteirosPage() {
         </div>
 
         <div className="lg:col-span-3">
-          <Card className="glass border-pink-500/20 rounded-3xl overflow-hidden h-full min-h-[500px] relative">
-             <div className="absolute top-0 right-0 p-8 opacity-5">
-                <Brain className="w-32 h-32 text-pink-400" />
+          <Card className="glass border-pink-500/20 bg-pink-500/[0.02] rounded-[2.5rem] overflow-hidden min-h-[600px] relative shadow-3xl">
+             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+                <Brain className="w-48 h-48 text-pink-400" />
              </div>
-             <CardHeader className="border-b border-white/[0.06] flex flex-row items-center justify-between py-6">
+             <CardHeader className="border-b border-white/[0.06] flex flex-row items-center justify-between p-10">
                 <div>
-                  <CardTitle className="text-white text-lg font-black italic">Roteiro Sugerido</CardTitle>
-                  <CardDescription className="text-pink-400/50 text-[10px] font-black uppercase tracking-widest">Baseado no fluxo operacional v3.6</CardDescription>
+                   <CardTitle className="text-2xl font-black italic text-white tracking-tighter">Seu Roteiro.</CardTitle>
+                   <CardDescription className="text-pink-400/50 text-[10px] font-black uppercase tracking-[0.2em]">Criado para converter e viralizar</CardDescription>
                 </div>
                 {script && (
-                   <div className="flex gap-2">
-                      <Button size="icon" variant="ghost" onClick={() => { navigator.clipboard.writeText(script); toast.success("Copiado!") }} className="h-9 w-9 rounded-xl border border-white/10 text-slate-400 hover:text-pink-400"><Copy className="w-4 h-4" /></Button>
-                      <Button size="icon" variant="ghost" className="h-9 w-9 rounded-xl border border-white/10 text-slate-400 hover:text-emerald-400"><Send className="w-4 h-4" /></Button>
+                   <div className="flex gap-3">
+                      <Button size="icon" variant="ghost" onClick={() => { navigator.clipboard.writeText(script); toast.success("Copiado!") }} className="h-11 w-11 rounded-2xl border border-white/10 text-slate-400 hover:text-pink-400 hover:bg-white/5 transition-all"><Copy className="w-5 h-5" /></Button>
+                      <Button size="icon" variant="ghost" className="h-11 w-11 rounded-2xl border border-white/10 text-slate-400 hover:text-emerald-400 hover:bg-white/5 transition-all"><Send className="w-5 h-5" /></Button>
                    </div>
                 )}
              </CardHeader>
-             <CardContent className="p-8">
-                 {!script && !isLoading ? (
-                    <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-20">
-                       <div className="h-16 w-16 bg-white/[0.04] border border-white/10 rounded-2xl flex items-center justify-center text-slate-600">
-                          <Target className="w-8 h-8" />
+             <CardContent className="p-10">
+                 {!script && !isBusy ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center space-y-6 py-24 opacity-40">
+                       <div className="h-24 w-24 bg-white/[0.04] border border-white/10 rounded-[2rem] flex items-center justify-center text-slate-600">
+                          <Target className="w-12 h-12" />
                        </div>
-                       <p className="text-slate-500 text-sm font-medium max-w-xs">Preencha o briefing ao lado para gerar seu roteiro estratégico.</p>
+                       <p className="text-xs font-bold uppercase tracking-widest text-slate-500 max-w-xs">Preencha o que vamos gravar ao lado para eu te dar o roteiro perfeito.</p>
                     </div>
-                 ) : isLoading && !script ? (
-                    <div className="space-y-4 py-10">
-                       <div className="h-4 bg-white/10 rounded-full w-3/4 animate-pulse" />
-                       <div className="h-4 bg-white/10 rounded-full w-1/2 animate-pulse" />
-                       <div className="h-4 bg-white/10 rounded-full w-5/6 animate-pulse" />
-                       <div className="h-20 bg-white/10 rounded-2xl w-full animate-pulse mt-8" />
+                 ) : isBusy && !script ? (
+                    <div className="space-y-6 py-10">
+                       <div className="h-6 bg-white/5 rounded-full w-3/4 animate-pulse" />
+                       <div className="h-6 bg-white/5 rounded-full w-1/2 animate-pulse" />
+                       <div className="h-6 bg-white/5 rounded-full w-5/6 animate-pulse" />
+                       <div className="h-32 bg-white/5 rounded-[2rem] w-full animate-pulse mt-12" />
                     </div>
                  ) : (
-                   <div className="animate-fade-in whitespace-pre-wrap text-slate-200 font-medium leading-relaxed text-sm lg:text-base">
+                   <div className="animate-fade-in whitespace-pre-wrap text-slate-200 font-medium leading-relaxed text-sm lg:text-base pr-12">
                       {script}
                    </div>
-                )}
+                 )}
              </CardContent>
              {script && (
-                <div className="absolute bottom-8 left-8 right-8">
-                   <div className="p-4 rounded-2xl bg-[#0c081a] border border-pink-500/20 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                         <div className="h-8 w-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400">
-                            <Video className="w-4 h-4" />
+                <div className="p-10 pt-0">
+                   <div className="p-6 rounded-[2rem] bg-indigo-600/10 border border-indigo-500/20 flex flex-col sm:flex-row items-center justify-between gap-6 backdrop-blur-xl">
+                      <div className="flex items-center gap-4">
+                         <div className="h-12 w-12 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 border border-indigo-500/30">
+                            <Video className="w-6 h-6" />
                          </div>
-                         <p className="text-[10px] font-black text-white uppercase tracking-widest">Enviar direto para o pessoal da GRAVAÇÃO?</p>
+                         <div>
+                            <p className="text-[10px] font-black text-white uppercase tracking-widest">Gostou? Mande agora pro time!</p>
+                            <p className="text-[9px] text-indigo-400 font-black uppercase tracking-[0.2em]">Envia direto para o WhatsApp da Produção</p>
+                         </div>
                       </div>
-                      <Button size="sm" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[9px] uppercase tracking-widest px-6 h-8 rounded-lg">Mandar agora!</Button>
+                      <Button className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-black text-[10px] uppercase tracking-widest px-8 h-12 rounded-xl shadow-lg shadow-indigo-500/20">Mandar agora!</Button>
                    </div>
                 </div>
              )}

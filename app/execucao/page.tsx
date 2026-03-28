@@ -18,23 +18,23 @@ export default function ExecucaoPage() {
     <div className="space-y-10 lg:space-y-14 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-in-up">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white">Lista de Tarefas de Hoje</h2>
-          <p className="text-slate-500 text-sm">Tudo o que a gente precisa fazer agora.</p>
+          <h2 className="text-3xl font-black italic tracking-tighter text-white">O que precisamos fazer hoje.</h2>
+          <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest pl-1">Veja aqui o que fazer agora para tudo dar certo.</p>
         </div>
         <div className="flex items-center gap-4 glass rounded-2xl px-5 py-3 border-white/[0.06]">
-          <span className="text-sm font-semibold text-slate-400">Progresso:</span>
-          <div className="flex bg-white/[0.06] h-3 w-36 rounded-full overflow-hidden">
-            <div className={`bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full progress-bar`} style={{ width: `45%` }} />
+          <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Como estamos indo:</span>
+          <div className="flex bg-white/[0.06] h-3 w-36 rounded-full overflow-hidden border border-white/5">
+            <div className={`bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full progress-bar shadow-[0_0_10px_rgba(99,102,241,0.5)]`} style={{ width: `45%` }} />
           </div>
-          <span className="text-sm font-extrabold text-indigo-400">45%</span>
+          <span className="text-sm font-black text-indigo-400 italic">45%</span>
         </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-3 animate-fade-in-up-delay-1">
         <Card className="md:col-span-2 glass rounded-2xl border-white/[0.06]">
           <CardHeader>
-            <CardTitle className="text-lg font-bold text-white">O que fazer hoje</CardTitle>
-            <CardDescription className="text-slate-500">Nosso trabalho de hoje.</CardDescription>
+            <CardTitle className="text-lg font-black italic text-white tracking-tighter">Nossas Tarefas.</CardTitle>
+            <CardDescription className="text-slate-500 text-[10px] font-black uppercase tracking-widest">O trabalho que está sendo feito agora.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {tasks.map((task) => (
@@ -62,7 +62,7 @@ export default function ExecucaoPage() {
         <div className="space-y-5">
           <Card className="glass rounded-2xl border-white/[0.06] overflow-hidden">
             <div className="h-1 bg-gradient-to-r from-amber-400 to-orange-500" />
-            <CardHeader className="pb-3"><CardTitle className="text-base font-bold text-white flex items-center gap-2"><AlertCircle className="w-4 h-4 text-amber-400" /> Alertas</CardTitle></CardHeader>
+            <CardHeader className="pb-3"><CardTitle className="text-base font-black italic text-white flex items-center gap-2"><AlertCircle className="w-4 h-4 text-amber-400" /> Avisos Importantes</CardTitle></CardHeader>
             <CardContent>
               <div className="bg-amber-500/10 text-amber-300 p-3.5 rounded-xl text-sm leading-relaxed border border-amber-500/10">
                 <strong>Clínica Odonto</strong> precisa de mais posts. Vamos agendar mais 2?

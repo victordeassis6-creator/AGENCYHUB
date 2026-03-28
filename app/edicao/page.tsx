@@ -34,20 +34,20 @@ export default function EdicaoPage() {
   ]
 
   const stages = [
-    { title: "Recém Filmado", id: "RAW", color: "border-slate-500/20 bg-slate-500/5", icon: PlayCircle },
-    { title: "Em Montagem", id: "EDITING", color: "border-indigo-500/20 bg-indigo-500/5", icon: Scissors },
-    { title: "Para Aprovar", id: "APPROVAL", color: "border-amber-500/20 bg-amber-500/5", icon: Eye },
-    { title: "Tudo Pronto", id: "FINAL", color: "border-emerald-500/20 bg-emerald-500/5", icon: CheckCircle2 },
+    { title: "Vídeos que chegaram", id: "RAW", color: "border-slate-500/20 bg-slate-500/5", icon: PlayCircle },
+    { title: "Editando agora", id: "EDITING", color: "border-indigo-500/20 bg-indigo-500/5", icon: Scissors },
+    { title: "Pronto pra você ver", id: "APPROVAL", color: "border-amber-500/20 bg-amber-500/5", icon: Eye },
+    { title: "Já pode postar!", id: "FINAL", color: "border-emerald-500/20 bg-emerald-500/5", icon: CheckCircle2 },
   ]
 
   return (
     <div className="space-y-6 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <Scissors className="w-6 h-6 text-indigo-400" /> Montagem dos Vídeos
+          <h2 className="text-3xl font-black italic tracking-tighter text-white flex items-center gap-3">
+             Fazendo os Vídeos. <Scissors className="w-7 h-7 text-indigo-400" />
           </h2>
-          <p className="text-slate-500 text-sm font-medium">Veja o que estamos montando e o que já está pronto para o Instagram.</p>
+          <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest pl-1">Aqui você vê quais vídeos estão sendo feitos e quais já estão prontos.</p>
         </div>
         <div className="flex items-center gap-2 glass p-1.5 rounded-2xl border-white/5">
            <button onClick={() => setView("kanban")} className={`h-9 px-4 rounded-xl text-xs font-bold transition-all ${view === "kanban" ? "bg-indigo-500 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"}`}>Kanban</button>

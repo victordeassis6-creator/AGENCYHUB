@@ -6,20 +6,21 @@ import {
   Users, Calendar, LayoutDashboard, 
   Settings, CheckSquare, Sparkles, 
   Briefcase, FolderOpen, FilePieChart, 
-  Scissors, Camera, ChevronRight, FileText
+  Scissors, Camera, ChevronRight, FileText,
+  Wallet
 } from "lucide-react"
 
 const navItems = [
-  { name: "Página Principal", href: "/", icon: LayoutDashboard },
+  { name: "Início", href: "/", icon: LayoutDashboard },
   { name: "Meus Clientes", href: "/clientes", icon: Users },
-  { name: "Relatórios de Resultados", href: "/relatorios", icon: FilePieChart },
-  { name: "Ideias e Roteiros (IA)", href: "/roteiros", icon: FileText },
-  { name: "Dia de Gravação", href: "/producao", icon: Camera },
-  { name: "Montagem dos Vídeos", href: "/edicao", icon: Scissors },
-  { name: "Lista de Tarefas", href: "/execucao", icon: CheckSquare },
-  { name: "Agenda de Postagens", href: "/calendario", icon: Calendar },
-  { name: "Laboratório de IA", href: "/ia", icon: Sparkles },
-  { name: "Pasta de Vídeos/Fotos", href: "/midia", icon: FolderOpen },
+  { name: "Relatórios", href: "/relatorios", icon: FilePieChart },
+  { name: "Criar Roteiro", href: "/roteiros", icon: FileText },
+  { name: "Linha de Produção", href: "/producao", icon: Camera },
+  { name: "Tarefas", href: "/execucao", icon: CheckSquare },
+  { name: "Datas e Postagens", href: "/calendario", icon: Calendar },
+  { name: "Laboratório de Ideias", href: "/ia", icon: Sparkles },
+  { name: "Meus Arquivos", href: "/midia", icon: FolderOpen },
+  { name: "Meu Cofre", href: "/financeiro", icon: Wallet },
   { name: "Vendas e Planos", href: "/vendas", icon: Briefcase },
   { name: "Configurações", href: "/configuracoes", icon: Settings },
 ]

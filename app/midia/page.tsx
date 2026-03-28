@@ -9,83 +9,122 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { 
   FolderOpen, Plus, Search, FileImage, 
   FileVideo, MoreVertical, Download, 
-  ExternalLink, UploadCloud, Trash2
+  ExternalLink, UploadCloud, Trash2,
+  Link as LinkIcon, Globe
 } from "lucide-react"
+import { 
+  Dialog, DialogContent, DialogHeader, 
+  DialogTitle, DialogDescription, DialogTrigger,
+  DialogFooter
+} from "@/components/ui/dialog"
 import { toast } from "sonner"
 
 export default function MediaBankPage() {
   const [activeClient, setActiveClient] = useState("burger")
+  const [newLink, setNewLink] = useState("")
 
   const mediaItems = [
-    { id: 1, name: "Foto_Smash_Burger.jpg", type: "image", size: "2.4 MB", date: "27/03" },
-    { id: 2, name: "Video_Chef_Preparando.mp4", type: "video", size: "18.5 MB", date: "26/03" },
-    { id: 3, name: "Logo_Vetor_V2.svg", type: "image", size: "0.5 MB", date: "20/03" },
-    { id: 4, name: "Raw_Footage_Sexta.mov", type: "video", size: "145 MB", date: "15/03" },
+    { id: 1, name: "Foto_Smash_Burger.jpg", type: "image", size: "2.4 MB", date: "27/03", url: "#" },
+    { id: 2, name: "Video_Chef_Preparando.mp4", type: "video", size: "18.5 MB", date: "26/03", url: "#" },
+    { id: 3, name: "Drive: Campanha Abril", type: "link", size: "--", date: "20/03", url: "https://drive.google.com" },
+    { id: 4, name: "Raw_Footage_Sexta.mov", type: "video", size: "145 MB", date: "15/03", url: "#" },
   ]
 
+  const handleAddLink = () => {
+    if (!newLink) return toast.error("Insira o link do Drive ou Dropbox.")
+    toast.success("Link adicionado com sucesso!")
+    setNewLink("")
+  }
+
   return (
-    <div className="space-y-6 animate-fade-in-up">
+    <div className="space-y-6 lg:space-y-10 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <FolderOpen className="w-6 h-6 text-indigo-400" /> Banco de Mídia
+          <h2 className="text-3xl font-black tracking-tight text-white flex items-center gap-3 italic">
+            Pasta de Arquivos. <FolderOpen className="w-6 h-6 text-indigo-400" />
           </h2>
-          <p className="text-slate-500 text-sm font-medium">Biblioteca central de assets para criação de conteúdo.</p>
+          <p className="text-slate-500 text-xs font-bold uppercase tracking-widest pl-1">Onde ficam guardadas as fotos e vídeos de cada cliente.</p>
         </div>
-        <div className="flex gap-2">
-          <Button onClick={() => toast("Solicitar Upload ao Cliente")} variant="outline" className="border-white/10 glass text-slate-400 hover:text-white rounded-xl bg-transparent">
-            Solicitar Mídia
-          </Button>
-          <Button onClick={() => toast("Upload em massa...")} className="btn-lift bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl px-6 h-11">
-            <UploadCloud className="w-4 h-4 mr-2" /> Upload de Arquivos
+        <div className="flex gap-3">
+          <Dialog>
+            <DialogTrigger className="h-12 border border-white/10 glass text-indigo-400 hover:text-white rounded-2xl bg-transparent font-black text-xs uppercase tracking-widest px-6 flex items-center gap-2">
+               <LinkIcon className="w-4 h-4" /> Link do Drive
+            </DialogTrigger>
+            <DialogContent className="bg-[#0e0e10] border-white/10 rounded-[2rem] p-8 shadow-3xl">
+               <DialogHeader>
+                  <DialogTitle className="text-2xl font-black italic text-white tracking-tighter">Adicionar Pasta Externa</DialogTitle>
+                  <DialogDescription className="text-slate-500 font-bold text-xs uppercase tracking-widest">Cole o link do Google Drive ou Dropbox do cliente.</DialogDescription>
+               </DialogHeader>
+               <div className="py-6 space-y-4">
+                  <div className="space-y-2">
+                     <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">URL da Pasta</Label>
+                     <Input 
+                        placeholder="https://drive.google.com/..." 
+                        value={newLink}
+                        onChange={(e) => setNewLink(e.target.value)}
+                        className="bg-black/40 border-white/5 h-12 rounded-xl text-sm font-bold"
+                     />
+                  </div>
+               </div>
+               <DialogFooter>
+                  <Button onClick={handleAddLink} className="w-full h-12 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-xl shadow-indigo-500/20">Vincular Pasta</Button>
+               </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          <Button onClick={() => toast("Upload em massa...")} className="h-12 px-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-indigo-500/20">
+            <UploadCloud className="w-4 h-4 mr-2" /> Upload
           </Button>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-6">
         <div className="w-full md:w-64 space-y-2">
-          <Label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Filtrar Cliente</Label>
-          <Select value={activeClient} onValueChange={setActiveClient}>
-            <SelectTrigger className="glass border-white/10 text-slate-200 h-10"><SelectValue /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="burger">Burger House</SelectItem>
-              <SelectItem value="sushi">Sushi Real</SelectItem>
-              <SelectItem value="odonto">Clínica Odonto</SelectItem>
+          <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Escolher Cliente</Label>
+          <Select value={activeClient} onValueChange={(val) => setActiveClient(val || "burger")}>
+            <SelectTrigger className="glass border-white/10 text-slate-200 h-12 rounded-xl font-bold"><SelectValue /></SelectTrigger>
+            <SelectContent className="bg-[#111113] border-white/10 rounded-xl">
+              <SelectItem value="burger" className="font-bold">Burger House</SelectItem>
+              <SelectItem value="sushi" className="font-bold">Sushi Real</SelectItem>
+              <SelectItem value="odonto" className="font-bold">Clínica Odonto</SelectItem>
             </SelectContent>
           </Select>
         </div>
         <div className="flex-1 space-y-2">
-          <Label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Buscar Arquivo</Label>
+          <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Procurar por nome</Label>
           <div className="relative">
-             <Search className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
-             <Input placeholder="Buscar por nome ou formato..." className="glass border-white/10 text-slate-200 h-10 pl-10" />
+             <Search className="absolute left-4 top-4 h-4 w-4 text-slate-500" />
+             <Input placeholder="Qual arquivo você quer encontrar?" className="glass border-white/10 text-slate-200 h-12 pl-12 rounded-xl font-bold" />
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
         {mediaItems.map((item) => (
-          <Card key={item.id} className="card-hover glass border-white/[0.06] rounded-2xl overflow-hidden group cursor-pointer relative">
-            <div className="aspect-square bg-white/[0.03] flex flex-col items-center justify-center p-6 text-center">
-               {item.type === "image" ? <FileImage className="w-10 h-10 text-indigo-400 opacity-60 group-hover:opacity-100 transition-opacity" /> : <FileVideo className="w-10 h-10 text-purple-400 opacity-60 group-hover:opacity-100 transition-opacity" />}
-               <p className="text-[10px] text-slate-400 mt-4 font-semibold truncate w-full px-2">{item.name}</p>
+          <Card key={item.id} className="card-hover glass border-white/[0.06] rounded-[2rem] overflow-hidden group cursor-pointer relative shadow-2xl h-full flex flex-col">
+            <div className="aspect-square bg-white/[0.03] flex flex-col items-center justify-center p-8 text-center flex-1">
+               {item.type === "image" ? <FileImage className="w-12 h-12 text-indigo-400 opacity-60 group-hover:opacity-100 transition-all group-hover:scale-110" /> : 
+                item.type === "link" ? <Globe className="w-12 h-12 text-emerald-400 opacity-60 group-hover:opacity-100 transition-all group-hover:scale-110" /> :
+                <FileVideo className="w-12 h-12 text-purple-400 opacity-60 group-hover:opacity-100 transition-all group-hover:scale-110" />}
+               <p className="text-[10px] text-slate-400 mt-6 font-black uppercase tracking-widest truncate w-full px-2 italic">{item.name}</p>
             </div>
-            <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-center gap-2">
-               <Button size="icon" variant="ghost" className="h-7 w-7 rounded-lg text-white hover:bg-white/10 p-0"><Download className="w-3.5 h-3.5" /></Button>
-               <Button size="icon" variant="ghost" className="h-7 w-7 rounded-lg text-white hover:bg-white/10 p-0"><Trash2 className="w-3.5 h-3.5 text-rose-400" /></Button>
+            <div className="p-3 bg-white/[0.02] border-t border-white/5 flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+               <a href={item.url} target="_blank" rel="noopener noreferrer" className="h-8 w-8 rounded-xl text-indigo-400 hover:bg-white/5 flex items-center justify-center"><ExternalLink className="w-4 h-4" /></a>
+               <Button size="icon" variant="ghost" className="h-8 w-8 rounded-xl text-rose-400 hover:bg-white/5 p-0"><Trash2 className="w-4 h-4" /></Button>
             </div>
-            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="h-6 w-6 rounded-lg bg-white/10 flex items-center justify-center text-white"><MoreVertical className="w-3 h-3" /></button>
-            </div>
+            {item.type === "link" && (
+                <div className="absolute top-3 left-3">
+                   <div className="px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30 text-[8px] font-black text-emerald-400 uppercase tracking-widest">Externo</div>
+                </div>
+            )}
           </Card>
         ))}
 
-        <Card className="card-hover border-2 border-dashed border-white/10 bg-transparent rounded-2xl cursor-pointer hover:border-indigo-500/30 hover:bg-indigo-500/5 group flex items-center justify-center aspect-square" onClick={() => toast("Adicionar...")}>
+        <Card className="card-hover border-2 border-dashed border-white/5 bg-transparent rounded-[2rem] cursor-pointer hover:border-indigo-500/30 hover:bg-indigo-500/5 group flex items-center justify-center aspect-square" onClick={() => toast("Upload...")}>
           <div className="text-center">
-            <div className="h-10 w-10 mx-auto rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center text-slate-500 group-hover:text-indigo-400 transition-colors mb-2">
-              <Plus className="w-5 h-5" />
+            <div className="h-12 w-12 mx-auto rounded-2xl border border-white/10 bg-white/[0.04] flex items-center justify-center text-slate-500 group-hover:text-indigo-400 transition-all mb-3">
+              <Plus className="w-6 h-6" />
             </div>
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Novo Arquivo</p>
+            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest italic">Novo</p>
           </div>
         </Card>
       </div>
