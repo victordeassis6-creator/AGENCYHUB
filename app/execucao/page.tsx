@@ -18,8 +18,8 @@ export default function ExecucaoPage() {
     <div className="space-y-10 lg:space-y-14 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-in-up">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white">Execução Diária</h2>
-          <p className="text-slate-500 text-sm">Checklist do que precisa ser entregue hoje.</p>
+          <h2 className="text-2xl font-bold tracking-tight text-white">Lista de Tarefas de Hoje</h2>
+          <p className="text-slate-500 text-sm">Tudo o que a gente precisa fazer agora.</p>
         </div>
         <div className="flex items-center gap-4 glass rounded-2xl px-5 py-3 border-white/[0.06]">
           <span className="text-sm font-semibold text-slate-400">Progresso:</span>
@@ -33,8 +33,8 @@ export default function ExecucaoPage() {
       <div className="grid gap-6 md:grid-cols-3 animate-fade-in-up-delay-1">
         <Card className="md:col-span-2 glass rounded-2xl border-white/[0.06]">
           <CardHeader>
-            <CardTitle className="text-lg font-bold text-white">Tarefas de Hoje</CardTitle>
-            <CardDescription className="text-slate-500">Fluxo operacional integrado.</CardDescription>
+            <CardTitle className="text-lg font-bold text-white">O que fazer hoje</CardTitle>
+            <CardDescription className="text-slate-500">Nosso trabalho de hoje.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {tasks.map((task) => (
@@ -65,7 +65,7 @@ export default function ExecucaoPage() {
             <CardHeader className="pb-3"><CardTitle className="text-base font-bold text-white flex items-center gap-2"><AlertCircle className="w-4 h-4 text-amber-400" /> Alertas</CardTitle></CardHeader>
             <CardContent>
               <div className="bg-amber-500/10 text-amber-300 p-3.5 rounded-xl text-sm leading-relaxed border border-amber-500/10">
-                <strong>Clínica Odonto</strong> está com entregas abaixo de 80%. Agende mais 2 posts.
+                <strong>Clínica Odonto</strong> precisa de mais posts. Vamos agendar mais 2?
               </div>
             </CardContent>
           </Card>
