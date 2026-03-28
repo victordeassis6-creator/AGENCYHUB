@@ -32,8 +32,8 @@ export default function IAModulePage() {
     <div className="space-y-12 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-black tracking-tight text-white mb-2 italic">Intelligence Lab.</h2>
-          <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">IA nativa para criação, anúncios e análise de métricas em tempo real.</p>
+          <h2 className="text-3xl font-black tracking-tight text-white mb-2 italic">Laboratório de Ideias.</h2>
+          <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">Nossa inteligência que ajuda a criar vídeos e anúncios muito mais rápido.</p>
         </div>
       </div>
 

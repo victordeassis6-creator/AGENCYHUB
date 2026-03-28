@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+
 import { 
   Camera, Calendar as CalendarIcon, Users, 
   MapPin, CheckCircle2, Circle, Clock, 
@@ -62,9 +62,9 @@ export default function ProducaoPage() {
                            <p className="text-sm font-bold text-slate-200 flex items-center gap-1 justify-end"><Clock className="w-3.5 h-3.5" /> {visit.time}</p>
                            <p className="text-[10px] text-slate-500 font-medium">Equipe: {visit.team}</p>
                         </div>
-                        <Badge className={`${visit.status === "CONFIRMED" ? "bg-emerald-500/15 text-emerald-400" : "bg-amber-500/15 text-amber-400"} border-0 px-3 py-1 rounded-full uppercase text-[10px] font-bold`}>
+                        <span className={`${visit.status === "CONFIRMED" ? "bg-emerald-500/15 text-emerald-400" : "bg-amber-500/15 text-amber-400"} px-3 py-1 rounded-full uppercase text-[10px] font-bold`}>
                            {visit.status === "CONFIRMED" ? "Confirmado" : "Pendente"}
-                        </Badge>
+                        </span>
                         <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-indigo-400 transition-colors" />
                      </div>
                    </div>
@@ -97,7 +97,7 @@ export default function ProducaoPage() {
               <CardHeader className="pb-4">
                  <CardTitle className="text-white text-md flex items-center justify-between">
                     O que não esquecer de filmar
-                    <Badge variant="outline" className="text-[9px] border-indigo-500/40 text-indigo-400">BURGER HOUSE</Badge>
+                    <span className="text-[9px] border border-indigo-500/40 text-indigo-400 px-2 py-0.5 rounded-full font-bold">BURGER HOUSE</span>
                  </CardTitle>
                  <CardDescription className="text-slate-500 text-xs font-bold leading-tight">Lista do que precisa ser filmado hoje.</CardDescription>
               </CardHeader>
