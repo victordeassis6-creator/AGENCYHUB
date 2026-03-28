@@ -10,7 +10,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { 
   Sparkles, Wand2, Brain, Zap, MessageSquare, 
   Layout, FileText, Loader2, Instagram, TrendingUp, 
-  Video, Image as ImageIcon, Download, Share2
+  Video, Image as ImageIcon, Download, Share2,
+  BarChart3, Target, MousePointer2, Megaphone,
+  PieChart, Activity, Fingerprint
 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -23,7 +25,7 @@ export default function IAModulePage() {
     setTimeout(() => {
       setIsGenerating(false)
       setResult(true)
-      toast.success("Conteúdo gerado com IA! ✨")
+      toast.success("Análise concluída com sucesso! ✨")
     }, 2000)
   }
 
@@ -32,22 +34,28 @@ export default function IAModulePage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-indigo-400" /> Inteligência Artificial
+            <Sparkles className="w-6 h-6 text-indigo-400" /> Inteligência Inteligente
           </h2>
-          <p className="text-slate-500 text-sm font-medium">O cérebro criativo da sua agência alimentado por Claude e Ideogram.</p>
+          <p className="text-slate-500 text-sm font-medium">O cérebro operacional da sua agência: de criativos a anúncios e métricas.</p>
         </div>
       </div>
 
       <Tabs defaultValue="auditoria" className="w-full">
-        <TabsList className="glass border-white/10 bg-white/5 p-1 rounded-2xl mb-6">
+        <TabsList className="glass border-white/10 bg-white/5 p-1 rounded-2xl mb-6 overflow-x-auto justify-start h-auto">
           <TabsTrigger value="auditoria" className="rounded-xl px-6 data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
             <TrendingUp className="w-4 h-4 mr-2" /> Auditoria Viral
           </TabsTrigger>
           <TabsTrigger value="criativos" className="rounded-xl px-6 data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
-            <ImageIcon className="w-4 h-4 mr-2" /> Gerador de Artes
+            <ImageIcon className="w-4 h-4 mr-2" /> Artes (Ideogram)
           </TabsTrigger>
           <TabsTrigger value="roteiros" className="rounded-xl px-6 data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
             <Video className="w-4 h-4 mr-2" /> Roteiros & Vídeos
+          </TabsTrigger>
+          <TabsTrigger value="ads" className="rounded-xl px-6 data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
+            <Megaphone className="w-4 h-4 mr-2" /> Meta Ads Assistant
+          </TabsTrigger>
+          <TabsTrigger value="analista" className="rounded-xl px-4 data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
+            <BarChart3 className="w-4 h-4 mr-2" /> Analista de Dados
           </TabsTrigger>
         </TabsList>
 
@@ -90,7 +98,7 @@ export default function IAModulePage() {
           </Card>
         </TabsContent>
 
-        {/* 🎨 CREATIVE GENERATOR (Ideogram style) */}
+        {/* 🎨 CREATIVE GENERATOR */}
         <TabsContent value="criativos" className="space-y-6 animate-fade-in-up">
            <div className="grid lg:grid-cols-5 gap-6">
               <Card className="lg:col-span-2 glass border-white/[0.06] rounded-2xl h-fit">
@@ -115,138 +123,162 @@ export default function IAModulePage() {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-xs font-bold text-slate-500 uppercase">Estilo</Label>
-                      <Select defaultValue="photo">
-                        <SelectTrigger className="glass h-10"><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="photo">Fotorealista</SelectItem>
-                          <SelectItem value="art">Design Gráfico</SelectItem>
-                        </SelectContent>
-                      </Select>
+                       <Label className="text-xs font-bold text-slate-500 uppercase">Estilo</Label>
+                       <Select defaultValue="photo">
+                          <SelectTrigger className="glass h-10"><SelectValue /></SelectTrigger>
+                          <SelectContent>
+                             <SelectItem value="photo">Fotorealista</SelectItem>
+                             <SelectItem value="3d">Digital 3D</SelectItem>
+                          </SelectContent>
+                       </Select>
                     </div>
                   </div>
-                  <div className="space-y-2">
-                     <Label className="text-xs font-bold text-slate-500 uppercase">Texto na Imagem</Label>
-                     <Input placeholder="Ex: PROMOÇÃO 20% OFF" className="glass h-10 text-slate-200" />
-                  </div>
-                  <Button onClick={handleGenerate} disabled={isGenerating} className="w-full btn-lift bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold h-11 rounded-xl">
-                    {isGenerating ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Sparkles className="w-4 h-4 mr-2" />}
-                    {isGenerating ? "Criando Artes..." : "Gerar 4 Opções"}
-                  </Button>
+                  <Button onClick={handleGenerate} className="w-full btn-lift bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold h-11 rounded-xl">Gerar Artes</Button>
                 </CardContent>
               </Card>
-
               <div className="lg:col-span-3 grid grid-cols-2 gap-4">
-                {[1,2,3,4].map((i) => (
-                  <div key={i} className="aspect-[4/5] rounded-2xl glass border-white/[0.06] overflow-hidden group relative flex flex-col items-center justify-center bg-white/5">
-                    {result ? (
-                       <>
-                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <div className="flex gap-2">
-                               <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700 h-8 flex-1 rounded-lg">Usar no Post</Button>
-                               <Button size="sm" variant="outline" className="h-8 w-8 rounded-lg p-0"><Download className="w-4 h-4" /></Button>
-                            </div>
-                         </div>
-                         <div className="text-center p-4">
-                            <p className="text-xs text-indigo-400 font-bold mb-2">ARTE GERADA #{i}</p>
-                            <div className="h-40 w-32 bg-slate-800 rounded-lg mx-auto shadow-2xl relative overflow-hidden">
-                               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20" />
-                               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-black text-[10px] leading-tight uppercase w-full px-2">
-                                  Burger & Fries<br/><span className="text-indigo-400">20% OFF</span>
-                               </div>
-                            </div>
-                         </div>
-                       </>
-                    ) : (
-                      <div className="text-slate-600 text-center space-y-2">
-                         <ImageIcon className="w-8 h-8 mx-auto opacity-20" />
-                         <p className="text-[10px] font-bold uppercase tracking-widest opacity-40">Preview #{i}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                 {[1,2,3,4].map(i => (
+                    <div key={i} className="aspect-square glass border-white/5 rounded-2xl flex items-center justify-center opacity-40 italic text-xs text-slate-500">Preview Criativo #{i}</div>
+                 ))}
               </div>
            </div>
         </TabsContent>
 
-        {/* 🎬 SCRIPTS & VIDEO (Creatomate logic) */}
-        <TabsContent value="roteiros" className="space-y-6 animate-fade-in-up">
-           <div className="grid lg:grid-cols-2 gap-6">
-              <Card className="glass border-white/[0.06] rounded-2xl">
+        {/* 📢 META ADS ASSISTANT (NOVO) */}
+        <TabsContent value="ads" className="space-y-6 animate-fade-in-up">
+           <div className="grid lg:grid-cols-3 gap-6">
+              <Card className="lg:col-span-1 glass border-white/10 rounded-2xl">
                  <CardHeader>
-                    <CardTitle className="text-white">Gerador de Roteiros Avançado</CardTitle>
-                    <CardDescription>Roteiros prontos para gravar ou automatizar.</CardDescription>
+                    <CardTitle className="text-white flex items-center gap-2"><Target className="w-5 h-5 text-indigo-400" /> Criador de Campanhas</CardTitle>
+                    <CardDescription>Configure sua estratégia de tráfego pago.</CardDescription>
                  </CardHeader>
-                 <CardContent className="space-y-5">
-                    <div className="grid grid-cols-2 gap-4">
-                       <div className="space-y-2">
-                          <Label className="text-xs font-bold text-slate-500 uppercase">Tipo de Vídeo</Label>
-                          <Select defaultValue="bastidor">
-                             <SelectTrigger className="glass h-10"><SelectValue /></SelectTrigger>
-                             <SelectContent>
-                                <SelectItem value="bastidor">Bastidores / Rotina</SelectItem>
-                                <SelectItem value="review">Review / Teste</SelectItem>
-                                <SelectItem value="promo">Promoção Relâmpago</SelectItem>
-                             </SelectContent>
-                          </Select>
-                       </div>
-                       <div className="space-y-2">
-                          <Label className="text-xs font-bold text-slate-500 uppercase">Duração</Label>
-                          <Select defaultValue="30s">
-                             <SelectTrigger className="glass h-10"><SelectValue /></SelectTrigger>
-                             <SelectContent>
-                                <SelectItem value="15s">15 Segundos</SelectItem>
-                                <SelectItem value="30s">30 Segundos</SelectItem>
-                                <SelectItem value="60s">60 Segundos</SelectItem>
-                             </SelectContent>
-                          </Select>
-                       </div>
+                 <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                       <Label className="text-xs font-bold text-slate-500 uppercase">Objetivo</Label>
+                       <Select defaultValue="leads">
+                          <SelectTrigger className="glass h-10"><SelectValue /></SelectTrigger>
+                          <SelectContent>
+                             <SelectItem value="leads">Mensagens no WhatsApp</SelectItem>
+                             <SelectItem value="sales">Vendas no Site</SelectItem>
+                             <SelectItem value="visit">Visitas ao Perfil</SelectItem>
+                          </SelectContent>
+                       </Select>
                     </div>
                     <div className="space-y-2">
-                       <Label className="text-xs font-bold text-slate-500 uppercase">Assunto Principal</Label>
-                       <Input placeholder="Ex: Preparação do Molho Secreto" className="glass h-11 text-slate-200" />
+                       <Label className="text-xs font-bold text-slate-500 uppercase">Budget Diário</Label>
+                       <Input type="number" placeholder="R$ 50,00" className="glass h-10 text-slate-200" />
                     </div>
-                    <Button onClick={handleGenerate} className="w-full btn-lift bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold h-11 rounded-xl">
-                       <Zap className="w-4 h-4 mr-2" /> Gerar Roteiro Completo
+                    <div className="space-y-2">
+                       <Label className="text-xs font-bold text-slate-500 uppercase">Descrição da Oferta</Label>
+                       <textarea className="w-full rounded-xl glass border-white/10 p-3 text-sm text-slate-200 min-h-[100px]" placeholder="Ex: Combo Casal por R$ 59,90 apenas hoje..." />
+                    </div>
+                    <Button onClick={handleGenerate} className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-xl h-11">
+                       <Zap className="w-4 h-4 mr-2" /> Gerar Configuração Ads
                     </Button>
                  </CardContent>
               </Card>
 
-              {result && (
-                 <Card className="glass border-indigo-500/20 rounded-2xl bg-indigo-500/5 animate-fade-in-up">
-                    <CardHeader className="pb-3 flex flex-row items-center justify-between">
-                       <CardTitle className="text-white text-md">Roteiro Sugerido</CardTitle>
-                       <Button variant="outline" size="sm" className="h-8 rounded-lg text-[10px] uppercase font-bold border-indigo-500/40 text-indigo-400 bg-transparent">
-                          <Download className="w-3.5 h-3.5 mr-1" /> PDF
-                       </Button>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                       <div className="p-3 bg-white/5 rounded-xl border border-indigo-500/20">
-                          <p className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1">Gancho de Abertura (Hook)</p>
-                          <p className="text-sm text-slate-200">"Você nunca comeu nada igual a esse molho secreto..."</p>
-                       </div>
-                       <div className="space-y-3">
-                          {[
-                             { scene: "00-05s", action: "Câmera lenta entrando no pote de molho", talk: "Isso é o que dá o sabor..." },
-                             { scene: "05-15s", action: "Corte rápido do Chef misturando ervas", talk: "São 12 temperos selecionados à mão." },
-                             { scene: "15-30s", action: "Pessoa provando e sorrindo", talk: "Clique no link da bio e peça o seu agora!" },
-                          ].map((step, i) => (
-                             <div key={i} className="flex gap-3 text-[11px] leading-snug">
-                                <span className="font-bold text-indigo-400 whitespace-nowrap">{step.scene}</span>
-                                <div className="space-y-1">
-                                   <p className="text-slate-300"><span className="text-slate-500 font-bold">[Cena]</span> {step.action}</p>
-                                   <p className="text-slate-400 italic">"{step.talk}"</p>
-                                </div>
+              <div className="lg:col-span-2 space-y-6">
+                 {result && (
+                    <Card className="glass border-indigo-500/20 rounded-2xl bg-indigo-500/5 animate-fade-in-up">
+                       <CardHeader><CardTitle className="text-white text-md">Estratégia Meta Ads Gerada</CardTitle></CardHeader>
+                       <CardContent className="space-y-6">
+                          <div className="grid md:grid-cols-2 gap-4">
+                             <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                                <p className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-2">Público Sugerido (Targeting)</p>
+                                <p className="text-xs text-slate-300">"Pessoas 18-45 anos, raio 5km da loja, interessadas em: Gastronomia, Hamburguer e Ifood."</p>
                              </div>
-                          ))}
+                             <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                                <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-2">Copy de Alta Conversão</p>
+                                <p className="text-xs text-slate-300">"🍔 Bateu aquela fome? O melhor burger da cidade com desconto exclusivo só para quem clicar abaixo! 👇"</p>
+                             </div>
+                          </div>
+                          <div className="p-4 rounded-xl border border-white/10 bg-white/5 space-y-3">
+                             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Estrutura de Campanha Recomendada</p>
+                             <ul className="text-xs text-slate-400 space-y-2">
+                                <li className="flex items-center gap-2"><MousePointer2 className="w-3.5 h-3.5 text-indigo-400" /> 1 Campanha de Mensagens</li>
+                                <li className="flex items-center gap-2"><MousePointer2 className="w-3.5 h-3.5 text-indigo-400" /> 2 Conjuntos de Anúncios (Aberto vs Interesses)</li>
+                                <li className="flex items-center gap-2"><MousePointer2 className="w-3.5 h-3.5 text-indigo-400" /> 3 Criativos (Foto estática + Reel bastidor + Vídeo Chef)</li>
+                             </ul>
+                          </div>
+                       </CardContent>
+                    </Card>
+                 )}
+              </div>
+           </div>
+        </TabsContent>
+
+        {/* 📉 IA DATA ANALYST (NOVO) */}
+        <TabsContent value="analista" className="space-y-6 animate-fade-in-up">
+           <div className="grid lg:grid-cols-4 gap-6">
+              <div className="space-y-6 lg:col-span-1">
+                 <Card className="glass border-white/10 rounded-2xl">
+                    <CardHeader><CardTitle className="text-white text-md">Analista de Insights</CardTitle></CardHeader>
+                    <CardContent className="space-y-4">
+                       <div className="space-y-2">
+                          <Label className="text-xs font-bold text-slate-500 uppercase">Fonte de Dados</Label>
+                          <Select defaultValue="instagram">
+                             <SelectTrigger className="glass h-10"><SelectValue /></SelectTrigger>
+                             <SelectContent>
+                                <SelectItem value="instagram">Instagram Insights</SelectItem>
+                                <SelectItem value="meta">Meta Ads Manager</SelectItem>
+                                <SelectItem value="all">Dados Consolidados</SelectItem>
+                             </SelectContent>
+                          </Select>
                        </div>
-                       <Button className="w-full bg-white/10 hover:bg-white/15 text-white h-9 rounded-xl text-xs font-bold border border-white/10">
-                          <Video className="w-4 h-4 mr-2" /> Gerar Vídeo Automático (Creatomate)
+                       <Button onClick={handleGenerate} className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-xl h-11">
+                          <Brain className="w-4 h-4 mr-2" /> Extrair Insights
                        </Button>
                     </CardContent>
                  </Card>
-              )}
+              </div>
+
+              <div className="lg:col-span-3 space-y-6">
+                 {result && (
+                    <div className="grid md:grid-cols-2 gap-6 animate-fade-in-up">
+                       <Card className="glass border-white/10 rounded-2xl">
+                          <CardHeader><CardTitle className="text-white text-md flex items-center gap-2"><Fingerprint className="w-4 h-4 text-purple-400" /> Padrões Identificados</CardTitle></CardHeader>
+                          <CardContent className="space-y-4">
+                             {[
+                                { t: "Anomalia Positiva", d: "Vídeos postados entre 11h-12h geram 40% mais cliques em delivery." },
+                                { t: "Gargalo de Retenção", d: "Público dropa nos primeiros 3s de Reels sem legenda na tela." },
+                                { t: "Oportunidade de ROI", d: "Aumentar budget em 15% para o público 'Lookalike' pode reduzir o CPA em R$ 2,40." },
+                             ].map((item, i) => (
+                                <div key={i} className="p-3 bg-white/5 rounded-xl border border-white/5">
+                                   <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">{item.t}</p>
+                                   <p className="text-xs text-slate-300 leading-relaxed font-medium">{item.d}</p>
+                                </div>
+                             ))}
+                          </CardContent>
+                       </Card>
+
+                       <Card className="glass border-emerald-500/20 bg-emerald-500/5 rounded-2xl">
+                          <CardHeader><CardTitle className="text-white text-md flex items-center gap-2"><Activity className="w-4 h-4 text-emerald-400" /> Saúde da Marca</CardTitle></CardHeader>
+                          <CardContent className="space-y-6">
+                             <div className="space-y-2">
+                                <div className="flex justify-between text-xs font-bold text-slate-400 uppercase"><span>Sentiment Score</span> <span>92% Positivo</span></div>
+                                <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden"><div className="w-[92%] h-full bg-emerald-500" /></div>
+                             </div>
+                             <div className="p-4 bg-white/5 rounded-xl border border-white/5 space-y-2">
+                                <p className="text-xs font-bold text-white italic">"Conclusão do Analista:"</p>
+                                <p className="text-xs text-slate-400 leading-relaxed">
+                                   "O crescimento está sustentável. O engajamento atual suporta uma nova rodada de expansão de tráfego pago focada em novos CEPs ao redor da unidade principal."
+                                </p>
+                             </div>
+                          </CardContent>
+                       </Card>
+                    </div>
+                 )}
+              </div>
            </div>
+        </TabsContent>
+
+        {/* 🎬 ROTEIROS SECTION */}
+        <TabsContent value="roteiros" className="space-y-6">
+            <Card className="glass border-white/10 rounded-2xl p-8 text-center opacity-40">
+               <Video className="w-12 h-12 mx-auto mb-4 text-slate-600" />
+               <p className="text-sm font-bold text-slate-500">Módulo de Roteiros já consolidado com cena a cena.</p>
+            </Card>
         </TabsContent>
       </Tabs>
     </div>
