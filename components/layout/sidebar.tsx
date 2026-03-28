@@ -6,20 +6,21 @@ import {
   Users, Calendar, LayoutDashboard, 
   Settings, CheckSquare, Sparkles, 
   Briefcase, FolderOpen, FilePieChart, 
-  Scissors, Camera, ChevronRight
+  Scissors, Camera, ChevronRight, FileText
 } from "lucide-react"
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Clientes", href: "/clientes", icon: Users },
-  { name: "Vendas", href: "/vendas", icon: Briefcase },
-  { name: "Produção", href: "/producao", icon: Camera },
+  { name: "Relatórios", href: "/relatorios", icon: FilePieChart },
   { name: "Edição", href: "/edicao", icon: Scissors },
+  { name: "Produção", href: "/producao", icon: Camera },
   { name: "Execução", href: "/execucao", icon: CheckSquare },
   { name: "Calendário", href: "/calendario", icon: Calendar },
   { name: "Inteligência (IA)", href: "/ia", icon: Sparkles },
   { name: "Banco de Mídia", href: "/midia", icon: FolderOpen },
-  { name: "Relatórios", href: "/relatorios", icon: FilePieChart },
+  { name: "Gerador de Roteiros", href: "/roteiros", icon: FileText },
+  { name: "Vendas", href: "/vendas", icon: Briefcase },
   { name: "Configurações", href: "/configuracoes", icon: Settings },
 ]
 
