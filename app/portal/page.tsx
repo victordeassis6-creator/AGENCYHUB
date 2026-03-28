@@ -16,7 +16,8 @@ export default function ClientPortalPage() {
   ]
 
   return (
-    <div className="p-8 lg:p-12 space-y-12 animate-fade-in-up">
+  return (
+    <div className="animate-fade-in-up">
       {/* Premium Banner */}
       <div className="group relative overflow-hidden rounded-[2.5rem] bg-[#111113] border border-[#1e1e20] p-12 lg:p-16 flex flex-col md:flex-row md:items-center justify-between gap-8">
         <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">

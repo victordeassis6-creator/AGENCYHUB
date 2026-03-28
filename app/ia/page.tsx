@@ -29,7 +29,7 @@ export default function IAModulePage() {
   }
 
   return (
-    <div className="p-8 lg:p-12 space-y-12 animate-fade-in-up">
+    <div className="space-y-12 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-3xl font-black tracking-tight text-white mb-2 italic">Intelligence Lab.</h2>

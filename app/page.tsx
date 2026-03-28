@@ -25,7 +25,7 @@ export default function Dashboard() {
   ]
 
   return (
-    <div className="p-8 lg:p-12 space-y-12 animate-fade-in-up">
+    <div className="animate-fade-in-up">
       {/* Welcome Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
