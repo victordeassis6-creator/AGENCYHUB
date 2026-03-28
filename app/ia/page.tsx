@@ -17,16 +17,36 @@ import { useChat } from "ai/react"
 import { toast } from "sonner"
 
 export default function IAModulePage() {
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [result, setResult] = useState<any>(null)
+  const [instagramLink, setInstagramLink] = useState("")
+  const [adObjective, setAdObjective] = useState("leads")
+  
+  const auditorChat = useChat({
+    api: '/api/chat',
+    onFinish: () => toast.success("Auditoria concluída! ✨"),
+    body: { type: 'auditoria' }
+  })
 
-  const handleGenerate = () => {
-    setIsGenerating(true)
-    setTimeout(() => {
-      setIsGenerating(false)
-      setResult(true)
-      toast.success("Análise concluída com sucesso! ✨")
-    }, 1500)
+  const adsChat = useChat({
+    api: '/api/chat',
+    onFinish: () => toast.success("Estratégia gerada! 🎯"),
+    body: { type: 'ads' }
+  })
+
+  const handleGenerateAuditoria = () => {
+    if (!instagramLink) return toast.error("Insira o link do Instagram.")
+    auditorChat.setMessages([])
+    auditorChat.append({
+      role: 'user',
+      content: `Faça uma auditoria viral do perfil: ${instagramLink}. Foque em pontos de melhoria e sugestões de conteúdo.`
+    })
+  }
+
+  const handleGenerateAds = () => {
+    adsChat.setMessages([])
+    adsChat.append({
+      role: 'user',
+      content: `Gere uma estratégia de Meta Ads para uma agência com o objetivo: ${adObjective}. Sugira público-alvo e criativos.`
+    })
   }
 
   return (
@@ -59,57 +79,87 @@ export default function IAModulePage() {
                <Card className="bg-[#111113] border-[#1e1e20] rounded-3xl p-8">
                   <h3 className="text-white font-bold mb-6 flex items-center gap-2">Análise de Perfil</h3>
                   <div className="space-y-4">
-                    <Input placeholder="Link do Instagram..." className="bg-black/40 border-white/5 h-12 text-sm rounded-xl focus:border-indigo-500/50" />
-                    <Button onClick={handleGenerate} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs uppercase tracking-widest h-12 rounded-xl">Iniciar Auditoria</Button>
+                    <Input 
+                        placeholder="Link do Instagram..." 
+                        value={instagramLink}
+                        onChange={(e) => setInstagramLink(e.target.value)}
+                        className="bg-black/40 border-white/5 h-12 text-sm rounded-xl focus:border-indigo-500/50" 
+                    />
+                    <Button 
+                        onClick={handleGenerateAuditoria} 
+                        disabled={auditorChat.isLoading}
+                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs uppercase tracking-widest h-12 rounded-xl"
+                    >
+                        {auditorChat.isLoading ? "Analisando..." : "Iniciar Auditoria"}
+                    </Button>
                   </div>
                </Card>
             </div>
             
             <div className="lg:col-span-8 space-y-8">
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  { label: "Engajamento", value: "4.8%", desc: "Acima da média", trend: "up" },
-                  { label: "Melhor Hora", value: "20:00", desc: "Noite (Sexta/Sab)", trend: "none" },
-                  { label: "Top Formato", value: "Reels", desc: "Institucional", trend: "up" },
-                ].map((stat, i) => (
-                  <div key={i} className="p-6 rounded-2xl bg-[#111113] border border-[#1e1e20] text-center">
-                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">{stat.label}</p>
-                    <p className="text-2xl font-black text-white italic">{stat.value}</p>
-                    <p className="text-[10px] text-slate-600 mt-1 font-bold">{stat.desc}</p>
-                  </div>
-                ))}
-              </div>
+               <div className="grid md:grid-cols-3 gap-6">
+                 {[
+                   { label: "Engajamento", value: "4.8%", desc: "Acima da média", trend: "up" },
+                   { label: "Melhor Hora", value: "20:00", desc: "Noite (Sexta/Sab)", trend: "none" },
+                   { label: "Top Formato", value: "Reels", desc: "Institucional", trend: "up" },
+                 ].map((stat, i) => (
+                   <div key={i} className="p-6 rounded-2xl bg-[#111113] border border-[#1e1e20] text-center">
+                     <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">{stat.label}</p>
+                     <p className="text-2xl font-black text-white italic">{stat.value}</p>
+                     <p className="text-[10px] text-slate-600 mt-1 font-bold">{stat.desc}</p>
+                   </div>
+                 ))}
+               </div>
+
+               {auditorChat.messages.length > 0 && (
+                  <Card className="bg-[#111113] border-[#1e1e20] rounded-3xl p-8 animate-fade-in-up">
+                     <h4 className="text-indigo-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <Brain className="w-4 h-4" /> Insights da IA
+                     </h4>
+                     <div className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap">
+                        {auditorChat.messages[auditorChat.messages.length - 1].content}
+                     </div>
+                  </Card>
+               )}
             </div>
           </div>
         </TabsContent>
 
         <TabsContent value="ads">
            <div className="grid lg:grid-cols-2 gap-12">
-              <Card className="bg-[#111113] border-[#1e1e20] rounded-[2rem] p-8">
-                 <h3 className="text-lg font-bold text-white mb-6">Configuração de Campanha</h3>
-                 <div className="space-y-6">
-                    <div className="space-y-2">
-                       <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Objetivo Principal</Label>
-                       <Select defaultValue="leads">
-                          <SelectTrigger className="bg-black/40 border-white/5 h-12 rounded-xl"><SelectValue /></SelectTrigger>
-                          <SelectContent>
-                             <SelectItem value="leads">Conversão WhatsApp</SelectItem>
-                             <SelectItem value="sales">Tráfego Local</SelectItem>
-                          </SelectContent>
-                       </Select>
-                    </div>
-                    <Button onClick={handleGenerate} className="w-full bg-white text-black font-black text-xs uppercase tracking-widest h-12 rounded-xl border-0">Gerar Estratégia de Ads</Button>
-                 </div>
-              </Card>
+               <Card className="bg-[#111113] border-[#1e1e20] rounded-[2rem] p-8">
+                  <h3 className="text-lg font-bold text-white mb-6">Configuração de Campanha</h3>
+                  <div className="space-y-6">
+                     <div className="space-y-2">
+                        <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Objetivo Principal</Label>
+                        <Select value={adObjective} onValueChange={setAdObjective}>
+                           <SelectTrigger className="bg-black/40 border-white/5 h-12 rounded-xl text-white"><SelectValue /></SelectTrigger>
+                           <SelectContent className="bg-[#111113] border-white/5">
+                              <SelectItem value="leads">Conversão WhatsApp</SelectItem>
+                              <SelectItem value="sales">Tráfego Local</SelectItem>
+                           </SelectContent>
+                        </Select>
+                     </div>
+                     <Button 
+                        onClick={handleGenerateAds} 
+                        disabled={adsChat.isLoading}
+                        className="w-full bg-white text-black font-black text-xs uppercase tracking-widest h-12 rounded-xl border-0"
+                     >
+                        {adsChat.isLoading ? "Gerando..." : "Gerar Estratégia de Ads"}
+                     </Button>
+                  </div>
+               </Card>
 
-              {result && (
-                 <div className="space-y-6 animate-fade-in-up">
-                    <div className="p-8 rounded-[2rem] bg-indigo-600/10 border border-indigo-500/20">
-                       <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-4">Meta Targeting Sugerido</p>
-                       <p className="text-sm text-slate-300 leading-relaxed font-medium">"Homens e Mulheres, 22-40 anos, interesse em Gastronomia e IFood, raio de 3km da unidade."</p>
-                    </div>
-                 </div>
-              )}
+               {adsChat.messages.length > 0 && (
+                  <div className="space-y-6 animate-fade-in-up">
+                     <div className="p-8 rounded-[2rem] bg-indigo-600/10 border border-indigo-500/20">
+                        <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-4">Meta Targeting Sugerido</p>
+                        <div className="text-sm text-slate-300 leading-relaxed font-medium whitespace-pre-wrap">
+                           {adsChat.messages[adsChat.messages.length - 1].content}
+                        </div>
+                     </div>
+                  </div>
+               )}
            </div>
         </TabsContent>
 
