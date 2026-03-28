@@ -3,10 +3,10 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { 
-  BarChart, Users, Calendar, LayoutDashboard, 
+  Users, Calendar, LayoutDashboard, 
   Settings, CheckSquare, Sparkles, UserCircle, 
   Briefcase, FolderOpen, FilePieChart, 
-  Video, Scissors, Camera
+  Scissors, Camera, ChevronRight
 } from "lucide-react"
 
 const navItems = [
@@ -21,42 +21,39 @@ const navItems = [
   { name: "Banco de Mídia", href: "/midia", icon: FolderOpen },
   { name: "Relatórios", href: "/relatorios", icon: FilePieChart },
   { name: "Configurações", href: "/configuracoes", icon: Settings },
-  { name: "Portal (Cliente)", href: "/portal", icon: UserCircle },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 w-64 flex-col hidden sm:flex glass border-r border-white/[0.06]">
+    <aside className="fixed inset-y-0 left-0 z-10 w-64 flex-col hidden sm:flex bg-[#09090b] border-r border-[#1a1a1a]">
       {/* Logo */}
-      <div className="flex h-16 items-center border-b border-white/[0.06] px-6">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-shadow duration-300">
-            A
-          </div>
-          <span className="font-bold text-lg tracking-tight text-white">Agency<span className="text-indigo-400">Hub</span></span>
+      <div className="flex h-20 items-center px-8">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="h-8 w-8 rounded-lg bg-white flex items-center justify-center text-black font-black text-sm">A</div>
+          <span className="font-bold text-base tracking-tight text-white">AgencyHub</span>
         </Link>
       </div>
 
       {/* Nav */}
-      <div className="flex-1 py-6 px-3 space-y-1 overflow-y-auto custom-scrollbar">
+      <div className="flex-1 py-4 px-4 space-y-1.5 overflow-y-auto custom-scrollbar">
         {navItems.map((item) => {
           const isActive = pathname === item.href
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`nav-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13.5px] font-medium transition-all ${
+              className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-[13px] font-semibold transition-all duration-200 ${
                 isActive
-                  ? "bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-indigo-300 shadow-sm shadow-indigo-500/10 border border-indigo-500/20"
-                  : "text-slate-400 hover:text-indigo-300 hover:bg-white/[0.04]"
+                  ? "bg-white/5 text-white shadow-sm border border-white/5"
+                  : "text-slate-500 hover:text-slate-200 hover:bg-white/[0.02]"
               }`}
             >
-              <item.icon className={`h-[18px] w-[18px] ${isActive ? "text-indigo-400" : ""}`} />
-              <span className="truncate">{item.name}</span>
+              <item.icon className="h-[18px] w-[18px] stroke-[1.5px]" />
+              <span>{item.name}</span>
               {isActive && (
-                <div className="ml-auto h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-sm shadow-indigo-400/50" />
+                <div className="ml-auto h-1 w-1 rounded-full bg-white" />
               )}
             </Link>
           )
@@ -64,15 +61,14 @@ export function Sidebar() {
       </div>
 
       {/* Bottom User */}
-      <div className="border-t border-white/[0.06] p-4">
-        <div className="flex items-center gap-3 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/10 p-3">
-          <div className="h-9 w-9 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold shadow-md shadow-indigo-500/30">
-            AP
-          </div>
+      <div className="p-6">
+        <div className="flex items-center gap-3 rounded-2xl bg-white/[0.03] border border-white/[0.05] p-3 hover:bg-white/[0.05] cursor-pointer transition-colors group">
+          <div className="h-9 w-9 rounded-full bg-indigo-500 flex items-center justify-center text-[10px] font-black text-white">AP</div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-slate-200 truncate">Agência Parceira</p>
-            <p className="text-[11px] text-slate-500 truncate">Plano Pro</p>
+            <p className="text-[11px] font-bold text-white truncate">Agência Parceira</p>
+            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Membro Pro</p>
           </div>
+          <ChevronRight className="w-4 h-4 text-slate-700 group-hover:text-slate-400" />
         </div>
       </div>
     </aside>

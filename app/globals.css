@@ -48,39 +48,53 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-  --background: #0f1729;
-  --foreground: #e2e8f0;
-  --card: #1e2946;
-  --card-foreground: #e2e8f0;
-  --popover: #1a2744;
-  --popover-foreground: #e2e8f0;
-  --primary: #818cf8;
-  --primary-foreground: #ffffff;
-  --secondary: #1a2040;
-  --secondary-foreground: #c7d2fe;
-  --muted: #161d35;
-  --muted-foreground: #94a3b8;
-  --accent: #1f1a3a;
-  --accent-foreground: #c4b5fd;
-  --destructive: #f87171;
-  --border: #253152;
-  --input: #253152;
-  --ring: #818cf8;
-  --chart-1: #818cf8;
-  --chart-2: #34d399;
-  --chart-3: #fbbf24;
-  --chart-4: #f472b6;
-  --chart-5: #22d3ee;
-  --radius: 0.75rem;
-  --sidebar: #0d1322;
-  --sidebar-foreground: #cbd5e1;
-  --sidebar-primary: #818cf8;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1a2040;
-  --sidebar-accent-foreground: #c7d2fe;
-  --sidebar-border: #1e2a45;
-  --sidebar-ring: #818cf8;
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.02] backdrop-blur-xl border border-white/[0.05] shadow-2xl;
+  }
+  
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-2xl border border-white/[0.03];
+  }
+
+  .btn-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/20 active:scale-95;
+  }
+
+  .nav-active {
+    @apply bg-white/[0.03] text-indigo-400 border-white/[0.05] shadow-inner;
+  }
+}
+
+body {
+  background-color: #09090b;
+  color: #fafafa;
+  -webkit-font-smoothing: antialiased;
 }
 
 @layer base {

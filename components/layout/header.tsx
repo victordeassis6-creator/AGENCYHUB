@@ -1,37 +1,31 @@
 "use client"
 
-import { usePathname } from "next/navigation"
-import { Bell } from "lucide-react"
+import { Bell, Search, User } from "lucide-react"
 
 export function Header() {
-  const pathname = usePathname()
-  
-  const titles: Record<string, string> = {
-    "/": "Dashboard Geral",
-    "/clientes": "Gestão de Clientes",
-    "/execucao": "Controle de Execução",
-    "/calendario": "Calendário de Conteúdo",
-    "/ia": "Inteligência Artificial",
-    "/financeiro": "Gestão Financeira",
-    "/configuracoes": "Configurações da Agência",
-    "/portal": "Portal do Cliente"
-  }
-  
-  const title = titles[pathname] || "Dashboard"
-
   return (
-    <header className="flex h-16 items-center gap-4 border-b border-white/[0.06] glass px-6 justify-between sticky top-0 z-10">
-      <div>
-        <h1 className="text-xl font-bold tracking-tight text-white">{title}</h1>
-        <p className="text-xs text-slate-500 font-medium mt-0.5">Sexta-feira, 27 de Março 2026</p>
+    <header className="sticky top-0 z-10 flex h-20 items-center gap-4 bg-[#09090b]/80 backdrop-blur-md px-8 border-b border-[#1a1a1a]">
+      <div className="flex items-center gap-4 flex-1">
+        <div className="hidden md:flex items-center gap-2 group cursor-pointer lg:w-96">
+          <Search className="h-4 w-4 text-slate-600 group-hover:text-slate-400 transition-colors" />
+          <span className="text-[13px] text-slate-700 group-hover:text-slate-500 font-semibold transition-colors">Buscar clientes, tarefas ou arquivos...</span>
+        </div>
       </div>
-      <div className="flex items-center gap-3">
-        <button className="btn-scale relative h-10 w-10 rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center text-slate-400 hover:text-indigo-400 hover:border-indigo-500/30 hover:bg-indigo-500/10 transition-all">
-          <Bell className="h-[18px] w-[18px]" />
-          <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[10px] font-bold flex items-center justify-center shadow-lg shadow-rose-500/40">3</span>
+      
+      <div className="flex items-center gap-6">
+        <button className="relative p-2 text-slate-500 hover:text-white transition-colors">
+          <Bell className="h-[18px] w-[18px] stroke-[1.5px]" />
+          <span className="absolute top-1 right-1 h-1.5 w-1.5 rounded-full bg-rose-500 shadow-sm shadow-rose-500/50" />
         </button>
-        <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-indigo-500/30 btn-scale cursor-pointer">
-          AP
+        
+        <div className="flex items-center gap-4 border-l border-[#1a1a1a] pl-6 h-8">
+           <div className="flex flex-col items-end hidden md:flex">
+              <span className="text-[11px] font-bold text-white">Vitor Assis</span>
+              <span className="text-[9px] font-black text-slate-500 uppercase tracking-tighter">Admin</span>
+           </div>
+           <div className="h-9 w-9 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-slate-500 hover:text-white transition-colors cursor-pointer group">
+              <User className="h-4 w-4 stroke-[1.5px] group-hover:scale-110 transition-transform" />
+           </div>
         </div>
       </div>
     </header>

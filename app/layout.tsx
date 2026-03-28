@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -26,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex antialiased`} style={{ background: 'linear-gradient(160deg, #0f1729 0%, #162044 50%, #1a1040 100%)' }}>
+    <html lang="pt-BR" className={`${outfit.variable} ${inter.variable}`}>
+      <body className="font-outfit min-h-screen flex antialiased" style={{ background: 'linear-gradient(160deg, #0f1729 0%, #162044 50%, #1a1040 100%)' }}>
         <Sidebar />
         <div className="flex flex-1 flex-col sm:pl-64">
           <Header />
