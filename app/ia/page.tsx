@@ -13,6 +13,7 @@ import {
   Target, Megaphone, Activity, Fingerprint,
   BarChart3
 } from "lucide-react"
+import { useChat } from "ai/react"
 import { toast } from "sonner"
 
 export default function IAModulePage() {
