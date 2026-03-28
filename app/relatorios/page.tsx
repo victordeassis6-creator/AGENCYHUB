@@ -37,9 +37,9 @@ export default function ReportsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <FilePieChart className="w-6 h-6 text-indigo-400" /> Relatórios de Performance
+            <FilePieChart className="w-6 h-6 text-indigo-400" /> Como estão os seus vídeos?
           </h2>
-          <p className="text-slate-500 text-sm font-medium">Extração de dados automática das APIs do Facebook e Instagram.</p>
+          <p className="text-slate-500 text-sm font-medium">Nossa IA pegou todos os números para você.</p>
         </div>
         <div className="flex gap-2">
            <Button variant="outline" className="glass border-white/10 text-slate-400 h-11 px-6 rounded-xl bg-transparent">
@@ -164,9 +164,9 @@ export default function ReportsPage() {
                 <div className="h-16 w-16 bg-white/5 rounded-full mx-auto flex items-center justify-center border border-white/10">
                    <Mail className="w-8 h-8 text-indigo-400" />
                 </div>
-                <h3 className="text-white font-bold italic text-lg tracking-tighter">Envio Automático</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-medium">Os clientes recebem o PDF de resultados no 1º dia útil de cada mês via email e WhatsApp.</p>
-                <Button className="w-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold h-11 rounded-xl">Configurar Agendamento</Button>
+                <h3 className="text-white font-bold italic text-lg tracking-tighter">Mandar para o Cliente</h3>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">Seus clientes recebem os resultados direto no WhatsApp e Email todo mês.</p>
+                <Button className="w-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold h-11 rounded-xl">Configurar Envio</Button>
              </div>
           </Card>
         </div>

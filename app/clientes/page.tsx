@@ -19,8 +19,8 @@ export default function ClientesPage() {
     <div className="space-y-10 lg:space-y-14 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-in-up">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white">Clientes</h2>
-          <p className="text-slate-500 text-sm">Gerencie todos os clientes da sua agência.</p>
+          <h2 className="text-2xl font-bold tracking-tight text-white">Meus Clientes</h2>
+          <p className="text-slate-500 text-sm">Lista de todas as empresas que você atende.</p>
         </div>
         <Button onClick={() => toast("Solicitar Novo Cliente")} className="btn-lift bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25 rounded-xl">
           <Plus className="w-4 h-4 mr-2" /> Adicionar Cliente
