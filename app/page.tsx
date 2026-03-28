@@ -25,7 +25,7 @@ export default function Dashboard() {
   ]
 
   return (
-    <div className="animate-fade-in-up">
+    <div className="space-y-14 animate-fade-in-up">
       {/* Welcome Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
@@ -41,14 +41,14 @@ export default function Dashboard() {
       {/* Stats Grid - Defined Containers v3.4 */}
       <div className="grid gap-6 md:grid-cols-4">
         {stats.map((stat, i) => (
-          <div key={i} className="group relative overflow-hidden p-8 rounded-[2.5rem] glass-glow border-white/[0.15] hover:scale-[1.02] duration-500">
-             <div className="flex items-center justify-between mb-6">
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-pink-200/50">{stat.label}</span>
-                <div className={`p-2.5 rounded-xl bg-white/5 border border-white/5 group-hover:bg-gradient-to-br ${stat.color} transition-all duration-300`}>
+          <div key={i} className="group relative overflow-hidden p-8 rounded-[2.5rem] glass-glow border-white/[0.15] hover:scale-[1.02] duration-500 min-h-[180px] flex flex-col justify-between">
+             <div className="flex items-start justify-between gap-4">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-pink-200/50 leading-tight">{stat.label}</span>
+                <div className={`shrink-0 p-2.5 rounded-xl bg-white/5 border border-white/5 group-hover:bg-gradient-to-br ${stat.color} transition-all duration-300`}>
                    <stat.icon className="h-4 w-4 text-white group-hover:scale-110 transition-transform" />
                 </div>
              </div>
-             <div className="flex items-end gap-3">
+             <div className="flex items-end gap-3 mt-4">
                 <h3 className="text-4xl font-black text-white italic tracking-tighter drop-shadow-xl">{stat.value}</h3>
                 <span className="text-[10px] font-black text-pink-400 mb-1.5 drop-shadow-lg">{stat.trend}</span>
              </div>
@@ -81,12 +81,12 @@ export default function Dashboard() {
 
       {/* Main Grid: Critical & Insights */}
       <div className="grid gap-12 lg:grid-cols-12 items-start">
-        <div className="lg:col-span-8 space-y-8">
-           <div className="flex items-center justify-between mb-4 px-2">
-              <h3 className="text-xs font-black uppercase tracking-[0.3em] text-white flex items-center gap-4 italic lg:text-sm">
-                 <div className="h-2 w-14 bg-gradient-to-r from-pink-500 to-violet-600 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.6)]" /> 
-                 Urgências Críticas
-              </h3>
+        <div className="lg:col-span-8 space-y-10">
+           <div className="flex items-center justify-between mb-2 px-2">
+              <div className="flex items-center gap-6">
+                 <div className="h-2 w-16 bg-gradient-to-r from-pink-500 to-violet-600 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.6)]" /> 
+                 <h3 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Urgências Críticas</h3>
+              </div>
               <button className="text-[10px] font-black text-white hover:text-pink-400 transition-all uppercase tracking-widest bg-white/10 border border-white/20 px-8 py-4 rounded-2xl shadow-xl">Ver Todas Atividades</button>
            </div>
            

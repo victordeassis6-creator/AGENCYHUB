@@ -45,9 +45,9 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-[13px] font-bold transition-all duration-300 ${
+              className={`flex items-center gap-4 rounded-2xl px-5 py-3.5 text-[13px] font-bold transition-all duration-300 ${
                 isActive
-                  ? "bg-gradient-to-r from-pink-500/10 to-violet-500/10 text-white shadow-lg border border-white/10"
+                  ? "bg-gradient-to-r from-pink-500/10 to-violet-500/10 text-white shadow-xl border border-white/10"
                   : "text-slate-400 hover:text-white hover:bg-white/5"
               }`}
             >
