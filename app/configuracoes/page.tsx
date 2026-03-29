@@ -85,7 +85,7 @@ export default function ConfiguracoesPage() {
              <div className="space-y-4">
                {[
                  { name: "Victor Assis", email: "victor@agencia.com", role: "Admin", color: "from-indigo-400 to-purple-500", icon: Crown },
-                 { name: "Julia Santos", email: "julia@agencia.com", role: "Editora", color: "from-pink-400 to-rose-500", icon: Shield }
+                 { name: "Julia Santos", email: "julia@agencia.com", role: "Editora", color: "from-violet-400 to-purple-500", icon: Shield }
                ].map((user, i) => (
                  <div key={i} className="flex items-center justify-between p-5 border border-white/5 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] transition-all group">
                    <div className="flex items-center gap-4">

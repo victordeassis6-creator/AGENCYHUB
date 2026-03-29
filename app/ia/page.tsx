@@ -232,7 +232,7 @@ export default function IAModulePage() {
                      <Button 
                         onClick={handleGenerateProposta}
                         disabled={proposalBusy}
-                        className="w-full bg-gradient-to-r from-pink-500 to-violet-600 text-white font-black text-xs uppercase tracking-[0.2em] h-14 rounded-2xl border-0 shadow-lg shadow-pink-500/20"
+                        className="w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white font-black text-xs uppercase tracking-[0.2em] h-14 rounded-2xl border-0 shadow-lg shadow-emerald-500/20"
                      >
                         {proposalBusy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Gerando...</> : "Criar Plano com IA"}
                      </Button>
@@ -240,8 +240,8 @@ export default function IAModulePage() {
                </Card>
                {proposalChat.messages.length > 0 ? (
                   <div className="animate-fade-in-up">
-                     <div className="p-10 rounded-[2.5rem] bg-pink-500/10 border border-pink-500/20 shadow-2xl backdrop-blur-xl">
-                        <h4 className="text-[10px] font-black text-pink-400 uppercase tracking-[0.3em] mb-6 flex items-center gap-2"><Fingerprint className="w-4 h-4" /> Plano Sugerido</h4>
+                     <div className="p-10 rounded-[2.5rem] bg-violet-500/10 border border-violet-500/20 shadow-2xl backdrop-blur-xl">
+                        <h4 className="text-[10px] font-black text-violet-400 uppercase tracking-[0.3em] mb-6 flex items-center gap-2"><Fingerprint className="w-4 h-4" /> Plano Sugerido</h4>
                         <div className="text-sm text-slate-300 leading-relaxed font-medium whitespace-pre-wrap">
                            {getTextFromMessages(proposalChat.messages)}
                         </div>

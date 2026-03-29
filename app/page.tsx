@@ -12,14 +12,14 @@ import Link from "next/link"
 
 export default function Dashboard() {
   const stats = [
-    { label: "Meus Clientes", value: "12", icon: Users, trend: "+2", color: "from-pink-500/20 to-violet-500/20", href: "/clientes" },
+    { label: "Meus Clientes", value: "12", icon: Users, trend: "+2", color: "from-violet-500/20 to-purple-500/20", href: "/clientes" },
     { label: "Meu Cofre", value: "R$ 42.500", icon: BarChart3, trend: "+15%", color: "from-emerald-500/20 to-teal-500/20", href: "/vendas" },
     { label: "O que fazer hoje", value: "24", icon: CheckSquare, trend: "85%", color: "from-indigo-500/20 to-blue-500/20", href: "/execucao" },
     { label: "Resultados", value: "156", icon: TrendingUp, trend: "+32%", color: "from-amber-500/20 to-orange-500/20", href: "/relatorios" },
   ]
 
   const pipelineStages = [
-    { label: "Ideias (IA)", count: 8, icon: Zap, color: "text-pink-400", href: "/roteiros" },
+    { label: "Ideias (IA)", count: 8, icon: Zap, color: "text-violet-400", href: "/roteiros" },
     { label: "Gravações", count: 5, icon: Camera, color: "text-violet-400", href: "/producao" },
     { label: "Edição", count: 12, icon: Scissors, color: "text-indigo-400", href: "/edicao" },
     { label: "Para Ver", count: 4, icon: Eye, color: "text-amber-400", href: "/relatorios" },
@@ -42,16 +42,16 @@ export default function Dashboard() {
 
       {/* Symmetrical Notification Bar */}
       <div className="grid md:grid-cols-2 gap-8 -mt-4">
-        <div className="p-10 rounded-[3rem] bg-gradient-to-br from-indigo-600/20 via-transparent to-pink-500/10 border border-white/10 backdrop-blur-3xl flex items-center justify-between group hover:border-pink-500/40 transition-all duration-500 shadow-3xl relative overflow-hidden">
+        <div className="p-10 rounded-[3rem] bg-gradient-to-br from-violet-600/20 via-transparent to-purple-500/10 border border-white/10 backdrop-blur-3xl flex items-center justify-between group hover:border-violet-500/40 transition-all duration-500 shadow-3xl relative overflow-hidden">
            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:rotate-12 transition-transform pointer-events-none">
-              <Camera className="w-32 h-32 text-pink-400" />
+              <Camera className="w-32 h-32 text-violet-400" />
            </div>
            <div className="flex items-center gap-8 relative z-10">
               <div className="h-16 w-16 rounded-[1.5rem] bg-black/40 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
-                 <Camera className="w-7 h-7 text-pink-400 drop-shadow-[0_0_10px_rgba(236,72,153,0.6)]" />
+                 <Camera className="w-7 h-7 text-violet-400 drop-shadow-[0_0_10px_rgba(139,92,246,0.6)]" />
               </div>
               <div>
-                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-pink-200/50 mb-2">Próxima Gravação</p>
+                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-violet-200/50 mb-2">Próxima Gravação</p>
                  <h3 className="text-2xl font-black text-white italic tracking-tighter">Burger House</h3>
                  <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest mt-1 italic">Terça, 31/03</p>
               </div>
@@ -115,7 +115,7 @@ export default function Dashboard() {
              <div key={i} className="flex-1 flex items-center group">
                 <Link href={stage.href} className="flex-1 glass rounded-[3rem] p-10 text-center hover:bg-white/5 transition-all cursor-pointer group-hover:-translate-y-3 duration-500 border-white/5 group-hover:border-white/20 shadow-2xl relative overflow-hidden bg-[#111113]">
                    <div className="h-20 w-20 mx-auto mb-6 rounded-[2rem] bg-black/40 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all">
-                      <stage.icon className={`h-8 w-8 ${stage.color} drop-shadow-[0_0_12px_rgba(236,72,153,0.4)]`} />
+                      <stage.icon className={`h-8 w-8 ${stage.color} drop-shadow-[0_0_12px_rgba(139,92,246,0.4)]`} />
                    </div>
                    <div className="text-5xl font-black text-white leading-none mb-2 tracking-tighter italic drop-shadow-2xl">{stage.count}</div>
                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 group-hover:text-white transition-colors">{stage.label}</div>
@@ -149,7 +149,7 @@ export default function Dashboard() {
              ].map((activity, i) => (
                <div key={i} className="flex items-center justify-between p-8 rounded-[2.5rem] bg-white/[0.02] border border-white/5 group cursor-pointer shadow-2xl transition-all hover:bg-white/[0.04] hover:translate-x-2">
                   <div className="flex items-center gap-8">
-                     <div className={`h-4 w-4 rounded-full ${activity.urgent ? "bg-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.8)] animate-pulse" : "bg-white/10"}`} />
+                     <div className={`h-4 w-4 rounded-full ${activity.urgent ? "bg-violet-500 shadow-[0_0_15px_rgba(139,92,246,0.8)] animate-pulse" : "bg-white/10"}`} />
                      <div>
                         <p className="text-[10px] font-black text-indigo-400/60 uppercase tracking-widest mb-1 italic">{activity.client}</p>
                         <p className="text-2xl font-black text-white group-hover:text-indigo-300 transition-colors leading-tight italic tracking-tighter drop-shadow-lg">{activity.task}</p>
@@ -173,7 +173,7 @@ export default function Dashboard() {
                <div className="space-y-8 relative z-10">
                   {[
                     { label: "Trabalhos Entregues", val: "94%", color: "from-indigo-500 to-purple-500" },
-                    { label: "Novos Seguidores", val: "72%", color: "from-pink-500 to-rose-500" },
+                    { label: "Novos Seguidores", val: "72%", color: "from-violet-500 to-purple-500" },
                     { label: "Retenção de Clientes", val: "100%", color: "from-emerald-500 to-teal-500" },
                    ].map((bar, i) => (
                     <div key={i} className="space-y-4">

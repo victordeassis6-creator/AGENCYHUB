@@ -65,7 +65,7 @@ export default function RoteirosPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h2 className="text-3xl font-black italic tracking-tighter text-white flex items-center gap-2">
-            Ideias para Vídeos. <Sparkles className="w-7 h-7 text-pink-400" />
+            Ideias para Vídeos. <Sparkles className="w-7 h-7 text-violet-400" />
           </h2>
           <p className="text-slate-500 text-xs font-bold uppercase tracking-widest pl-1">Crie roteiros incríveis em segundos com nossa IA.</p>
         </div>
@@ -110,7 +110,7 @@ export default function RoteirosPage() {
                       className="bg-black/40 border-white/10 rounded-2xl text-white font-medium min-h-[100px]" 
                     />
                  </div>
-                 <Button onClick={handleGenerate} disabled={isBusy} className="w-full h-14 bg-gradient-to-r from-pink-500 to-violet-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-pink-500/20">
+                 <Button onClick={handleGenerate} disabled={isBusy} className="w-full h-14 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-500/20">
                     {isBusy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Pensando...</> : "Gerar Roteiro Mágico ✨"}
                  </Button>
              </CardContent>
@@ -121,7 +121,7 @@ export default function RoteirosPage() {
              <div className="space-y-3">
                 {["Review de Burger", "Promoção Sushi", "Bastidores Docinho"].map((item, i) => (
                    <div key={i} className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-[11px] text-slate-400 font-bold hover:bg-white/[0.08] cursor-pointer transition-all truncate italic flex items-center gap-3">
-                      <div className="h-2 w-2 rounded-full bg-pink-500/40" /> {item}
+                      <div className="h-2 w-2 rounded-full bg-violet-500/40" /> {item}
                    </div>
                 ))}
              </div>
@@ -129,18 +129,18 @@ export default function RoteirosPage() {
         </div>
 
         <div className="lg:col-span-3">
-          <Card className="glass border-pink-500/20 bg-pink-500/[0.02] rounded-[2.5rem] overflow-hidden min-h-[600px] relative shadow-3xl">
+          <Card className="glass border-violet-500/20 bg-violet-500/[0.02] rounded-[2.5rem] overflow-hidden min-h-[600px] relative shadow-3xl">
              <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-                <Brain className="w-48 h-48 text-pink-400" />
+                <Brain className="w-48 h-48 text-violet-400" />
              </div>
              <CardHeader className="border-b border-white/[0.06] flex flex-row items-center justify-between p-10">
                 <div>
                    <CardTitle className="text-2xl font-black italic text-white tracking-tighter">Seu Roteiro.</CardTitle>
-                   <CardDescription className="text-pink-400/50 text-[10px] font-black uppercase tracking-[0.2em]">Criado para converter e viralizar</CardDescription>
+                   <CardDescription className="text-violet-400/50 text-[10px] font-black uppercase tracking-[0.2em]">Criado para converter e viralizar</CardDescription>
                 </div>
                 {script && (
                    <div className="flex gap-3">
-                      <Button size="icon" variant="ghost" onClick={() => { navigator.clipboard.writeText(script); toast.success("Copiado!") }} className="h-11 w-11 rounded-2xl border border-white/10 text-slate-400 hover:text-pink-400 hover:bg-white/5 transition-all"><Copy className="w-5 h-5" /></Button>
+                      <Button size="icon" variant="ghost" onClick={() => { navigator.clipboard.writeText(script); toast.success("Copiado!") }} className="h-11 w-11 rounded-2xl border border-white/10 text-slate-400 hover:text-violet-400 hover:bg-white/5 transition-all"><Copy className="w-5 h-5" /></Button>
                       <Button size="icon" variant="ghost" className="h-11 w-11 rounded-2xl border border-white/10 text-slate-400 hover:text-emerald-400 hover:bg-white/5 transition-all"><Send className="w-5 h-5" /></Button>
                    </div>
                 )}

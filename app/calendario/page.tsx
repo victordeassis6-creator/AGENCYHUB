@@ -40,7 +40,7 @@ export default function CalendarioPage() {
     approved: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
     production: "bg-indigo-500/10 border-indigo-500/20 text-indigo-400",
     idea: "bg-amber-500/10 border-amber-500/20 text-amber-400",
-    scheduled: "bg-pink-500/10 border-pink-500/20 text-pink-400 font-black",
+    scheduled: "bg-violet-500/10 border-violet-500/20 text-violet-400 font-black",
   }
 
   const sl: Record<string, string> = { 
@@ -71,7 +71,7 @@ export default function CalendarioPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
           <h2 className="text-3xl font-black italic tracking-tighter text-white flex items-center gap-3">
-             Nossa Agenda. <Sparkles className="w-7 h-7 text-pink-400 animate-pulse" />
+             Nossa Agenda. <Sparkles className="w-7 h-7 text-violet-400 animate-pulse" />
           </h2>
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest pl-1">Aqui você vê o que vai postar e quando vamos filmar.</p>
         </div>

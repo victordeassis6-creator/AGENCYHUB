@@ -20,7 +20,7 @@ export default function ClientesPage() {
   
   const clients = [
     { id: "1", name: "Burger House", niche: "Hamburgueria", status: "Ativo", plan: "Pro", color: "from-orange-400 to-red-500", metrics: { views: "45k", posts: 12, growth: "+15%" } },
-    { id: "2", name: "Sushi Real", niche: "Japonês", status: "Ativo", plan: "Basic", color: "from-rose-400 to-pink-500", metrics: { views: "32k", posts: 8, growth: "+8%" } },
+    { id: "2", name: "Sushi Real", niche: "Japonês", status: "Ativo", plan: "Basic", color: "from-violet-400 to-purple-500", metrics: { views: "32k", posts: 8, growth: "+8%" } },
     { id: "3", name: "Clínica Odonto", niche: "Saúde", status: "Ativo", plan: "Pro", color: "from-cyan-400 to-blue-500", metrics: { views: "12k", posts: 4, growth: "+22%" } },
     { id: "4", name: "Hotel Paraíso", niche: "Turismo", status: "Pausado", plan: "Basic", color: "from-violet-400 to-purple-500", metrics: { views: "5k", posts: 0, growth: "0%" } },
     { id: "5", name: "Tech Store", niche: "E-commerce", status: "Ativo", plan: "Pro", color: "from-emerald-400 to-teal-500", metrics: { views: "88k", posts: 24, growth: "+40%" } },
@@ -58,7 +58,7 @@ export default function ClientesPage() {
                           {client.name.charAt(0)}
                         </div>
                         <div>
-                          <p className="font-black text-lg text-white italic tracking-tighter group-hover:text-pink-400 transition-colors">{client.name}</p>
+                          <p className="font-black text-lg text-white italic tracking-tighter group-hover:text-violet-400 transition-colors">{client.name}</p>
                           <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">{client.niche} • {client.plan}</p>
                         </div>
                       </div>
@@ -70,7 +70,7 @@ export default function ClientesPage() {
                       <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full ${client.status === 'Ativo' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
                         {client.status}
                       </span>
-                      <div className="flex items-center gap-1.5 text-[10px] font-black text-pink-400 group-hover:translate-x-1 transition-transform uppercase tracking-widest">
+                      <div className="flex items-center gap-1.5 text-[10px] font-black text-violet-400 group-hover:translate-x-1 transition-transform uppercase tracking-widest">
                         Detalhes <ExternalLink className="w-3 h-3" />
                       </div>
                     </div>
@@ -117,7 +117,7 @@ export default function ClientesPage() {
                       <div className="space-y-3">
                          <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-all cursor-pointer">
                             <div className="flex items-center gap-4">
-                               <Camera className="w-5 h-5 text-pink-400" />
+                               <Camera className="w-5 h-5 text-violet-400" />
                                <div>
                                   <p className="text-xs font-bold text-white">Filmagem Unidade Centro</p>
                                   <p className="text-[10px] text-slate-500 font-medium">31 de Março às 14:00h</p>
