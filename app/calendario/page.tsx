@@ -38,7 +38,7 @@ export default function CalendarioPage() {
 
   const ss: Record<string, string> = {
     approved: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-    production: "bg-indigo-500/10 border-indigo-500/20 text-indigo-400",
+    production: "bg-purple-500/15 border-purple-400/20 text-fuchsia-400",
     idea: "bg-amber-500/10 border-amber-500/20 text-amber-400",
     scheduled: "bg-violet-500/10 border-violet-500/20 text-violet-400 font-black",
   }
@@ -76,10 +76,10 @@ export default function CalendarioPage() {
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest pl-1">Aqui você vê o que vai postar e quando vamos filmar.</p>
         </div>
         <div className="flex gap-4">
-          <Button variant="outline" className="h-12 border-white/10 bg-white/5 text-indigo-400 hover:bg-white/10 rounded-2xl font-black text-[10px] uppercase tracking-widest px-6" onClick={() => toast.success("IA Gerando cronograma...")}>
+          <Button variant="outline" className="h-12 border-white/10 bg-white/5 text-fuchsia-400 hover:bg-white/10 rounded-2xl font-black text-[10px] uppercase tracking-widest px-6" onClick={() => toast.success("IA Gerando cronograma...")}>
             <Sparkles className="w-4 h-4 mr-2" /> Ajuda da IA
           </Button>
-          <Button className="h-12 px-10 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-indigo-500/20">+ Novo</Button>
+          <Button className="h-12 px-10 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-500 text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-fuchsia-500/25">+ Novo</Button>
         </div>
       </div>
 
@@ -91,7 +91,7 @@ export default function CalendarioPage() {
         ))}
       </div>
 
-      <Card className="glass border-white/5 rounded-[3rem] overflow-hidden shadow-3xl bg-[#111113]">
+      <Card className="glass border-white/5 rounded-[3rem] overflow-hidden shadow-3xl bg-[#0a0616]">
         <CardContent className="p-0">
           <div className="flex items-center justify-between border-b border-white/5 p-10 bg-white/[0.01]">
             <h3 className="font-black italic text-3xl text-white tracking-tighter">Maio 2026.</h3>
@@ -112,8 +112,8 @@ export default function CalendarioPage() {
               const iv = day > 0 && day <= 31
               const it = day === 27
               return (
-                <div key={i} className={`min-h-[160px] border-r border-b border-white/5 p-5 flex flex-col gap-4 transition-all duration-500 hover:bg-white/[0.03] ${!iv ? "bg-black/40 opacity-20" : ""} ${it ? "bg-indigo-500/[0.05] ring-1 ring-indigo-500/20 ring-inset" : ""}`}>
-                  {iv && <span className={`text-xs font-black italic ${it ? 'text-indigo-400' : 'text-slate-500'}`}>{day}</span>}
+                <div key={i} className={`min-h-[160px] border-r border-b border-white/5 p-5 flex flex-col gap-4 transition-all duration-500 hover:bg-white/[0.03] ${!iv ? "bg-black/40 opacity-20" : ""} ${it ? "bg-purple-500/[0.05] ring-1 ring-purple-500/20 ring-inset" : ""}`}>
+                  {iv && <span className={`text-xs font-black italic ${it ? 'text-fuchsia-400' : 'text-slate-500'}`}>{day}</span>}
                   <div className="space-y-3">
                     {hp.map((p, idx) => (
                       <div 
@@ -158,7 +158,7 @@ export default function CalendarioPage() {
                     placeholder="Ex: Reels da Burger House"
                     value={selectedEvent?.title} 
                     onChange={(e) => setSelectedEvent({...selectedEvent, title: e.target.value})}
-                    className="bg-black/40 border-white/10 h-14 rounded-2xl text-white font-bold transition-all focus:border-indigo-500/50"
+                    className="bg-black/40 border-white/10 h-14 rounded-2xl text-white font-bold transition-all focus:border-purple-500/50"
                  />
               </div>
 
@@ -167,7 +167,7 @@ export default function CalendarioPage() {
                     <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Como está?</Label>
                     <Select value={selectedEvent?.status} onValueChange={(val) => setSelectedEvent({...selectedEvent, status: val})}>
                        <SelectTrigger className="bg-black/40 border-white/10 h-14 rounded-2xl text-white font-bold"><SelectValue /></SelectTrigger>
-                       <SelectContent className="bg-[#111113] border-white/10 rounded-2xl">
+                       <SelectContent className="bg-[#0a0616] border-white/10 rounded-2xl">
                           {Object.entries(sl).map(([k, v]) => (
                              <SelectItem key={k} value={k} className="text-xs font-bold py-3">{v}</SelectItem>
                           ))}
@@ -182,7 +182,7 @@ export default function CalendarioPage() {
                           placeholder="Ex: 14:00" 
                           value={selectedEvent?.time} 
                           onChange={(e) => setSelectedEvent({...selectedEvent, time: e.target.value})}
-                          className="pl-12 bg-black/40 border-white/10 h-14 rounded-2xl text-white font-bold transition-all focus:border-indigo-500/50"
+                          className="pl-12 bg-black/40 border-white/10 h-14 rounded-2xl text-white font-bold transition-all focus:border-purple-500/50"
                        />
                     </div>
                  </div>

@@ -50,24 +50,24 @@
 
 @layer base {
   :root {
-    --background: 222 47% 4%;
+    --background: 270 60% 4%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 4%;
+    --card: 270 50% 5%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 4%;
+    --popover: 270 50% 5%;
     --popover-foreground: 210 40% 98%;
     --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
+    --primary-foreground: 270 50% 8%;
+    --secondary: 270 30% 14%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
+    --muted: 270 30% 14%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 270 30% 14%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 270 30% 14%;
+    --input: 270 30% 14%;
     --ring: 212.7 26.8% 83.1%;
     --radius: 1rem;
   }
@@ -75,34 +75,34 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/[0.08] backdrop-blur-3xl border border-white/[0.12] shadow-2xl;
+    @apply bg-purple-950/40 backdrop-blur-3xl border border-purple-500/10 shadow-2xl;
   }
   
   .glass-glow {
-    @apply bg-white/[0.06] backdrop-blur-3xl border border-white/[0.15] shadow-[0_0_25px_rgba(139,92,246,0.1)] shadow-inner hover:shadow-[0_0_40px_rgba(139,92,246,0.25)] transition-all duration-500;
+    @apply bg-purple-950/30 backdrop-blur-3xl border border-purple-400/15 shadow-[0_0_25px_rgba(168,85,247,0.15)] hover:shadow-[0_0_40px_rgba(217,70,239,0.25)] transition-all duration-500;
   }
 
   .glass-dark {
-    @apply bg-black/30 backdrop-blur-3xl border border-white/[0.05];
+    @apply bg-black/30 backdrop-blur-3xl border border-purple-500/[0.08];
   }
 
-  .glow-indigo {
-    @apply shadow-[0_0_60px_-15px_rgba(139,92,246,0.4)];
+  .glow-purple {
+    @apply shadow-[0_0_60px_-15px_rgba(168,85,247,0.5)];
   }
 
   .btn-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/20 active:scale-95;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-fuchsia-500/25 active:scale-95;
   }
 }
 
 body {
-  background-color: #0c081a;
+  background-color: #080410;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.4) 0px, transparent 55%),
-    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 55%),
-    radial-gradient(at 50% 50%, rgba(139, 92, 246, 0.25) 0px, transparent 70%),
-    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.3) 0px, transparent 55%),
-    radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.3) 0px, transparent 55%);
+    radial-gradient(ellipse 80% 60% at 0% 0%, rgba(147, 51, 234, 0.55) 0px, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(219, 39, 119, 0.3) 0px, transparent 50%),
+    radial-gradient(ellipse 90% 70% at 50% 40%, rgba(168, 85, 247, 0.2) 0px, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 100% 100%, rgba(217, 70, 239, 0.3) 0px, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 0% 100%, rgba(147, 51, 234, 0.25) 0px, transparent 50%);
   background-attachment: fixed;
   color: #f8fafc;
   -webkit-font-smoothing: antialiased;
@@ -157,7 +157,7 @@ body {
 }
 .btn-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px -4px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 25px -4px rgba(217, 70, 239, 0.4);
 }
 .btn-lift:active {
   transform: translateY(0);
@@ -179,15 +179,15 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 35px -8px rgba(139, 92, 246, 0.2), 0 0 0 1px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 12px 35px -8px rgba(168, 85, 247, 0.25), 0 0 0 1px rgba(217, 70, 239, 0.1);
 }
 
 /* ===== GLASS CARD ===== */
 .glass {
-  background: rgba(30, 41, 70, 0.55);
+  background: rgba(15, 8, 30, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.1);
 }
 
 /* ===== NAV LINK ===== */
@@ -205,7 +205,7 @@ body {
 
 /* ===== GRADIENT TEXT ===== */
 .gradient-text {
-  background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 50%, #10B981 100%);
+  background: linear-gradient(135deg, #9333EA 0%, #D946EF 50%, #EC4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -213,5 +213,5 @@ body {
 
 /* ===== BODY GRADIENT ===== */
 .bg-page {
-  background: linear-gradient(160deg, #0c081a 0%, #130d2e 50%, #1a1040 100%);
+  background: linear-gradient(160deg, #080410 0%, #0f0820 50%, #120a24 100%);
 }

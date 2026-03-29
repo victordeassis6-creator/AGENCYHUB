@@ -29,12 +29,12 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 w-64 flex-col hidden sm:flex bg-white/[0.02] backdrop-blur-3xl border-r border-white/5 shadow-2xl">
+    <aside className="fixed inset-y-0 left-0 z-10 w-64 flex-col hidden sm:flex bg-purple-950/30 backdrop-blur-3xl border-r border-purple-500/10 shadow-2xl">
       {/* Logo */}
       <div className="flex h-20 items-center px-8">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-emerald-400 via-violet-600 to-purple-700 flex items-center justify-center text-white font-black text-base shadow-[0_0_15px_rgba(139,92,246,0.4)] group-hover:scale-110 transition-transform duration-300">A</div>
-          <span className="font-bold text-lg tracking-tighter text-white/90 italic">Agency<span className="text-emerald-400">Hub</span></span>
+          <div className="h-9 w-9 rounded-xl flex items-center justify-center text-white font-black text-base group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(217,70,239,0.4)]" style={{ background: 'linear-gradient(135deg, #7c3aed, #d946ef, #ec4899)' }}>A</div>
+          <span className="font-bold text-lg tracking-tighter text-white/90 italic">Agency<span className="text-fuchsia-400">Hub</span></span>
         </Link>
       </div>
 
@@ -48,11 +48,12 @@ export function Sidebar() {
               href={item.href}
               className={`flex items-center gap-4 rounded-2xl px-5 py-3.5 text-[13px] font-bold transition-all duration-300 ${
                 isActive
-                  ? "bg-gradient-to-r from-violet-500/10 to-purple-500/10 text-white shadow-xl border border-white/10"
+                  ? "text-white shadow-xl border border-purple-400/20"
                   : "text-slate-400 hover:text-white hover:bg-white/5"
               }`}
+              style={isActive ? { background: 'linear-gradient(135deg, rgba(124,58,237,0.2), rgba(217,70,239,0.15), rgba(236,72,153,0.1))' } : undefined}
             >
-              <item.icon className={`h-[18px] w-[18px] stroke-[2px] ${isActive ? 'text-violet-400' : 'group-hover:text-violet-400 opacity-70 transition-all'}`} />
+              <item.icon className={`h-[18px] w-[18px] stroke-[2px] ${isActive ? 'text-fuchsia-400' : 'opacity-70 transition-all'}`} />
               <span className="tracking-tight">{item.name}</span>
             </Link>
           )
@@ -61,11 +62,11 @@ export function Sidebar() {
 
       {/* Bottom User */}
       <div className="p-6">
-        <div className="flex items-center gap-3 rounded-2xl bg-white/[0.04] border border-white/[0.08] p-4 hover:bg-white/[0.08] cursor-pointer transition-all group shadow-xl">
-          <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-emerald-400 to-violet-600 flex items-center justify-center text-[11px] font-black text-white shadow-lg border border-white/20">AP</div>
+        <div className="flex items-center gap-3 rounded-2xl bg-purple-900/20 border border-purple-500/10 p-4 hover:bg-purple-900/30 cursor-pointer transition-all group shadow-xl">
+          <div className="h-10 w-10 rounded-full flex items-center justify-center text-[11px] font-black text-white shadow-lg border border-white/20" style={{ background: 'linear-gradient(135deg, #7c3aed, #d946ef, #ec4899)' }}>AP</div>
           <div className="flex-1 min-w-0">
             <p className="text-[12px] font-bold text-white truncate">Agência Parceira</p>
-            <p className="text-[10px] text-emerald-400/80 font-black uppercase tracking-widest">Membro Pro</p>
+            <p className="text-[10px] text-fuchsia-400/80 font-black uppercase tracking-widest">Membro Pro</p>
           </div>
           <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
         </div>

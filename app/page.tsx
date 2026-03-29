@@ -14,14 +14,14 @@ export default function Dashboard() {
   const stats = [
     { label: "Meus Clientes", value: "12", icon: Users, trend: "+2", color: "from-violet-500/20 to-purple-500/20", href: "/clientes" },
     { label: "Meu Cofre", value: "R$ 42.500", icon: BarChart3, trend: "+15%", color: "from-emerald-500/20 to-teal-500/20", href: "/vendas" },
-    { label: "O que fazer hoje", value: "24", icon: CheckSquare, trend: "85%", color: "from-indigo-500/20 to-blue-500/20", href: "/execucao" },
+    { label: "O que fazer hoje", value: "24", icon: CheckSquare, trend: "85%", color: "from-purple-500/20 to-blue-500/20", href: "/execucao" },
     { label: "Resultados", value: "156", icon: TrendingUp, trend: "+32%", color: "from-amber-500/20 to-orange-500/20", href: "/relatorios" },
   ]
 
   const pipelineStages = [
     { label: "Ideias (IA)", count: 8, icon: Zap, color: "text-violet-400", href: "/roteiros" },
     { label: "Gravações", count: 5, icon: Camera, color: "text-violet-400", href: "/producao" },
-    { label: "Edição", count: 12, icon: Scissors, color: "text-indigo-400", href: "/edicao" },
+    { label: "Edição", count: 12, icon: Scissors, color: "text-fuchsia-400", href: "/edicao" },
     { label: "Para Ver", count: 4, icon: Eye, color: "text-amber-400", href: "/relatorios" },
     { label: "Postados!", count: 32, icon: CheckCircle2, color: "text-emerald-400", href: "/relatorios" },
   ]
@@ -89,7 +89,7 @@ export default function Dashboard() {
           <Link key={i} href={stat.href} className="group relative overflow-hidden p-8 rounded-[2.5rem] glass-glow border-white/[0.1] hover:bg-white/[0.04] transition-all duration-500 min-h-[200px] flex flex-col justify-between cursor-pointer shadow-xl">
              <div className="flex items-start justify-between gap-4">
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 group-hover:text-white transition-colors">{stat.label}</span>
-                <div className={`shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-indigo-500/20 transition-all duration-300`}>
+                <div className={`shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-purple-600/20 transition-all duration-300`}>
                    <stat.icon className="h-5 w-5 text-white group-hover:scale-110 transition-transform" />
                 </div>
              </div>
@@ -107,15 +107,15 @@ export default function Dashboard() {
       {/* 🔄 ESTEIRA FLOW - Improved v5.0 */}
       <div className="space-y-10">
         <div className="flex items-center gap-6 ml-2">
-           <h2 className="text-[10px] font-black uppercase tracking-[0.6em] text-indigo-400 italic">Como a gente trabalha</h2>
+           <h2 className="text-[10px] font-black uppercase tracking-[0.6em] text-fuchsia-400 italic">Como a gente trabalha</h2>
            <div className="h-px flex-1 bg-white/5" />
         </div>
         <div className="flex flex-wrap md:flex-nowrap gap-6 items-center">
            {pipelineStages.map((stage, i) => (
              <div key={i} className="flex-1 flex items-center group">
-                <Link href={stage.href} className="flex-1 glass rounded-[3rem] p-10 text-center hover:bg-white/5 transition-all cursor-pointer group-hover:-translate-y-3 duration-500 border-white/5 group-hover:border-white/20 shadow-2xl relative overflow-hidden bg-[#111113]">
+                <Link href={stage.href} className="flex-1 glass rounded-[3rem] p-10 text-center hover:bg-white/5 transition-all cursor-pointer group-hover:-translate-y-3 duration-500 border-white/5 group-hover:border-white/20 shadow-2xl relative overflow-hidden bg-[#0a0616]">
                    <div className="h-20 w-20 mx-auto mb-6 rounded-[2rem] bg-black/40 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all">
-                      <stage.icon className={`h-8 w-8 ${stage.color} drop-shadow-[0_0_12px_rgba(139,92,246,0.4)]`} />
+                      <stage.icon className={`h-8 w-8 ${stage.color} drop-shadow-[0_0_12px_rgba(217,70,239,0.4)]`} />
                    </div>
                    <div className="text-5xl font-black text-white leading-none mb-2 tracking-tighter italic drop-shadow-2xl">{stage.count}</div>
                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 group-hover:text-white transition-colors">{stage.label}</div>
@@ -136,7 +136,7 @@ export default function Dashboard() {
         <div className="space-y-10">
            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-6">
-                 <div className="h-3 w-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-[0_0_20px_rgba(99,102,241,0.5)]" /> 
+                 <div className="h-3 w-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full shadow-[0_0_20px_rgba(147,51,234,0.5)]" /> 
                  <h3 className="text-xl font-black italic tracking-tighter text-white">Não esqueça disso.</h3>
               </div>
            </div>
@@ -151,8 +151,8 @@ export default function Dashboard() {
                   <div className="flex items-center gap-8">
                      <div className={`h-4 w-4 rounded-full ${activity.urgent ? "bg-violet-500 shadow-[0_0_15px_rgba(139,92,246,0.8)] animate-pulse" : "bg-white/10"}`} />
                      <div>
-                        <p className="text-[10px] font-black text-indigo-400/60 uppercase tracking-widest mb-1 italic">{activity.client}</p>
-                        <p className="text-2xl font-black text-white group-hover:text-indigo-300 transition-colors leading-tight italic tracking-tighter drop-shadow-lg">{activity.task}</p>
+                        <p className="text-[10px] font-black text-fuchsia-400/60 uppercase tracking-widest mb-1 italic">{activity.client}</p>
+                        <p className="text-2xl font-black text-white group-hover:text-fuchsia-300 transition-colors leading-tight italic tracking-tighter drop-shadow-lg">{activity.task}</p>
                      </div>
                   </div>
                   <span className="text-[10px] font-black text-slate-600 italic uppercase tracking-widest">{activity.time}</span>
@@ -162,19 +162,20 @@ export default function Dashboard() {
         </div>
 
          <div className="grid gap-12">
-            <div className="p-10 rounded-[3.5rem] bg-[#111113] border border-white/5 space-y-10 relative overflow-hidden shadow-3xl">
+            <div className="p-10 rounded-[3.5rem] bg-[#0a0616] border border-purple-500/10 space-y-10 relative overflow-hidden shadow-3xl">
+               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-fuchsia-900/10 pointer-events-none" />
                <div className="flex items-center justify-between relative z-10">
-                  <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.4em] flex items-center gap-3 italic">
-                     <Star className="w-5 h-5 text-indigo-400 drop-shadow-[0_0_10px_rgba(99,102,241,0.6)]" /> Como estamos indo
+                  <h4 className="text-[10px] font-black text-fuchsia-400 uppercase tracking-[0.4em] flex items-center gap-3 italic">
+                     <Star className="w-5 h-5 text-fuchsia-400 drop-shadow-[0_0_10px_rgba(147,51,234,0.6)]" /> Como estamos indo
                   </h4>
                   <div className="text-[9px] font-black bg-white text-black px-4 py-1.5 rounded-full shadow-2xl italic">AO VIVO</div>
                </div>
                
                <div className="space-y-8 relative z-10">
                   {[
-                    { label: "Trabalhos Entregues", val: "94%", color: "from-indigo-500 to-purple-500" },
-                    { label: "Novos Seguidores", val: "72%", color: "from-violet-500 to-purple-500" },
-                    { label: "Retenção de Clientes", val: "100%", color: "from-emerald-500 to-teal-500" },
+                    { label: "Trabalhos Entregues", val: "94%", color: "from-purple-500 via-fuchsia-500 to-pink-400" },
+                    { label: "Novos Seguidores", val: "72%", color: "from-fuchsia-500 to-pink-400" },
+                    { label: "Retenção de Clientes", val: "100%", color: "from-purple-500 to-fuchsia-400" },
                    ].map((bar, i) => (
                     <div key={i} className="space-y-4">
                        <div className="flex justify-between text-[11px] font-black text-slate-400 tracking-widest uppercase">
@@ -188,20 +189,24 @@ export default function Dashboard() {
                   ))}
                </div>
             </div>
-
-            <div className="p-12 rounded-[3.5rem] bg-gradient-to-br from-indigo-700 via-indigo-900 to-black text-white relative overflow-hidden group shadow-3xl border border-white/10">
-               <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-1000 pointer-events-none">
-                  <Zap className="w-48 h-48 text-indigo-300" />
-               </div>
-               <p className="text-[11px] font-black uppercase tracking-[0.6em] text-indigo-300/60 mb-8 italic">IA de Hoje</p>
-               <h4 className="text-3xl font-black italic leading-tight mb-10 tracking-tighter drop-shadow-2xl max-w-[300px]">Sugestão: Reels de Bastidores para Burger House.</h4>
-               <Link href="/ia">
-                  <Button className="h-14 px-12 bg-white text-black hover:bg-slate-200 font-black text-xs rounded-[1.5rem] shadow-3xl uppercase tracking-widest border-0 transition-all">
-                     Ver Estratégia
-                  </Button>
-               </Link>
-            </div>
          </div>
+      </div>
+
+      {/* IA Suggestion - Full Width */}
+      <div className="p-14 rounded-[3.5rem] text-white relative overflow-hidden group shadow-[0_0_60px_rgba(168,85,247,0.15)] border border-purple-400/20 mt-10 flex items-center justify-between gap-12" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 25%, #d946ef 50%, #ec4899 75%, #f472b6 100%)' }}>
+         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/5 pointer-events-none" />
+         <div className="absolute top-0 right-0 p-10 opacity-[0.12] group-hover:scale-110 transition-transform duration-1000 pointer-events-none">
+            <Zap className="w-60 h-60 text-white" />
+         </div>
+         <div className="relative z-10 flex-1">
+            <p className="text-[11px] font-black uppercase tracking-[0.6em] text-white/60 mb-6 italic">IA de Hoje</p>
+            <h4 className="text-4xl font-black italic leading-tight tracking-tighter drop-shadow-2xl max-w-[500px]">Sugestão: Reels de Bastidores para Burger House.</h4>
+         </div>
+         <Link href="/ia" className="relative z-10 shrink-0">
+            <Button className="h-16 px-14 bg-white text-black hover:bg-slate-100 font-black text-xs rounded-[2rem] shadow-3xl uppercase tracking-widest border-0 transition-all hover:scale-105">
+               Ver Estratégia
+            </Button>
+         </Link>
       </div>
     </div>
   )

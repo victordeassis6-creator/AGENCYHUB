@@ -51,13 +51,13 @@ export default function FinanceiroPage() {
            <p className="text-xs text-rose-400/60 font-medium mt-2">Dentro do esperado</p>
         </Card>
 
-        <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-3xl bg-indigo-500/5 relative overflow-hidden group">
+        <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-3xl bg-purple-500/15 relative overflow-hidden group">
            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
-              <Wallet className="w-20 h-20 text-indigo-400" />
+              <Wallet className="w-20 h-20 text-fuchsia-400" />
            </div>
-           <p className="text-[10px] font-black uppercase text-indigo-400 tracking-[0.3em] mb-4">Sobrou (Saldo)</p>
+           <p className="text-[10px] font-black uppercase text-fuchsia-400 tracking-[0.3em] mb-4">Sobrou (Saldo)</p>
            <h3 className="text-4xl font-black italic text-white tracking-tighter">R$ 9.250</h3>
-           <p className="text-xs text-indigo-400/60 font-medium mt-2">Pronto para investir</p>
+           <p className="text-xs text-fuchsia-400/60 font-medium mt-2">Pronto para investir</p>
         </Card>
       </div>
 
@@ -66,7 +66,7 @@ export default function FinanceiroPage() {
             <div className="flex gap-6">
                <button 
                   onClick={() => setActiveTab("todos")}
-                  className={`text-xs font-black uppercase tracking-widest pb-4 border-b-2 transition-all ${activeTab === "todos" ? "border-indigo-500 text-white" : "border-transparent text-slate-500 hover:text-slate-300"}`}
+                  className={`text-xs font-black uppercase tracking-widest pb-4 border-b-2 transition-all ${activeTab === "todos" ? "border-purple-500 text-white" : "border-transparent text-slate-500 hover:text-slate-300"}`}
                >
                   Ver Tudo
                </button>

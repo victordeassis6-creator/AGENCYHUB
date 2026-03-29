@@ -24,9 +24,9 @@ export default function ExecucaoPage() {
         <div className="flex items-center gap-4 glass rounded-2xl px-5 py-3 border-white/[0.06]">
           <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Como estamos indo:</span>
           <div className="flex bg-white/[0.06] h-3 w-36 rounded-full overflow-hidden border border-white/5">
-            <div className={`bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full progress-bar shadow-[0_0_10px_rgba(99,102,241,0.5)]`} style={{ width: `45%` }} />
+            <div className={`bg-gradient-to-r from-purple-500 to-purple-500 h-full rounded-full progress-bar shadow-[0_0_10px_rgba(99,102,241,0.5)]`} style={{ width: `45%` }} />
           </div>
-          <span className="text-sm font-black text-indigo-400 italic">45%</span>
+          <span className="text-sm font-black text-fuchsia-400 italic">45%</span>
         </div>
       </div>
 
@@ -39,15 +39,15 @@ export default function ExecucaoPage() {
           <CardContent className="space-y-3">
             {tasks.map((task) => (
               <div key={task.id} className={`flex items-start gap-4 p-4 border rounded-2xl transition-all duration-300 group ${
-                task.status === "done" ? "bg-emerald-500/5 border-emerald-500/10 opacity-60" : "bg-white/[0.02] hover:border-indigo-500/20 hover:bg-indigo-500/5 border-white/[0.06]"
+                task.status === "done" ? "bg-emerald-500/5 border-emerald-500/10 opacity-60" : "bg-white/[0.02] hover:border-purple-400/20 hover:bg-purple-500/15 border-white/[0.06]"
               }`}>
                 <button onClick={() => toast.success("Tarefa concluída! ✅")} className="mt-0.5 shrink-0 btn-scale">
-                  {task.status === "done" ? <CheckCircle2 className="w-6 h-6 text-emerald-400" /> : <Circle className="w-6 h-6 text-slate-600 group-hover:text-indigo-400 transition-colors" />}
+                  {task.status === "done" ? <CheckCircle2 className="w-6 h-6 text-emerald-400" /> : <Circle className="w-6 h-6 text-slate-600 group-hover:text-fuchsia-400 transition-colors" />}
                 </button>
                 <div className="flex-1 space-y-1.5">
                   <div className="flex items-center gap-2 flex-wrap">
                     <p className={`font-semibold ${task.status === "done" ? "line-through text-slate-600" : "text-slate-200"}`}>{task.title}</p>
-                    <span className={`bg-indigo-500/15 text-indigo-400 text-[10px] px-2.5 py-0.5 rounded-full uppercase font-bold tracking-wider`}>{task.type}</span>
+                    <span className={`bg-purple-500/15 text-fuchsia-400 text-[10px] px-2.5 py-0.5 rounded-full uppercase font-bold tracking-wider`}>{task.type}</span>
                   </div>
                   <div className="flex items-center gap-4 text-xs text-slate-500">
                     <span className="font-medium">{task.client}</span>
@@ -70,11 +70,11 @@ export default function ExecucaoPage() {
             </CardContent>
           </Card>
 
-          <Card className="glass rounded-2xl border-indigo-500/10 overflow-hidden bg-gradient-to-br from-indigo-500/10 to-purple-500/10">
-            <CardHeader className="pb-3"><CardTitle className="flex items-center gap-2 text-base font-bold text-indigo-300"><Sparkles className="w-4 h-4 text-indigo-400" /> Copiloto IA</CardTitle></CardHeader>
+          <Card className="glass rounded-2xl border-purple-500/10 overflow-hidden bg-gradient-to-br from-purple-500/15 to-purple-500/10">
+            <CardHeader className="pb-3"><CardTitle className="flex items-center gap-2 text-base font-bold text-fuchsia-300"><Sparkles className="w-4 h-4 text-fuchsia-400" /> Copiloto IA</CardTitle></CardHeader>
             <CardContent className="text-sm text-slate-400 space-y-4">
               <p>Os roteiros pendentes podem ser gerados em segundos.</p>
-              <Button size="sm" className="btn-lift w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white rounded-xl shadow-lg shadow-indigo-500/25">Gerar com IA</Button>
+              <Button size="sm" className="btn-lift w-full bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-500 hover:from-purple-600 hover:to-purple-700 text-white rounded-xl shadow-lg shadow-purple-500/25">Gerar com IA</Button>
             </CardContent>
           </Card>
         </div>

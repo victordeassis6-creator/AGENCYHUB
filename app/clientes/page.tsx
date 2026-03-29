@@ -33,7 +33,7 @@ export default function ClientesPage() {
           <h2 className="text-3xl font-black italic tracking-tighter text-white">Meus Parceiros.</h2>
           <p className="text-slate-500 text-xs font-bold uppercase tracking-widest pl-1">As marcas que estamos fazendo brilhar.</p>
         </div>
-        <Button onClick={() => toast("Solicitar Novo Cliente")} className="h-12 px-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-indigo-500/20">
+        <Button onClick={() => toast("Solicitar Novo Cliente")} className="h-12 px-8 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-500 text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-fuchsia-500/25">
           <Plus className="w-4 h-4 mr-2" /> Adicionar Novo
         </Button>
       </div>
@@ -41,7 +41,7 @@ export default function ClientesPage() {
       <div className="animate-fade-in-up-delay-1 max-w-xl">
         <div className="relative">
           <Search className="absolute left-4 top-4 h-4 w-4 text-slate-500" />
-          <Input placeholder="Buscar por nome ou nicho..." className="pl-12 glass border-white/5 rounded-2xl h-12 text-slate-200 placeholder:text-slate-600 focus:border-indigo-500/40" />
+          <Input placeholder="Buscar por nome ou nicho..." className="pl-12 glass border-white/5 rounded-2xl h-12 text-slate-200 placeholder:text-slate-600 focus:border-purple-500/40" />
         </div>
       </div>
 
@@ -129,7 +129,7 @@ export default function ClientesPage() {
                    </div>
 
                    <div className="flex gap-4 pt-4">
-                      <Button className="flex-1 h-12 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs uppercase tracking-widest rounded-xl">Planejamento Estratégico</Button>
+                      <Button className="flex-1 h-12 bg-purple-600 hover:bg-purple-700 text-white font-black text-xs uppercase tracking-widest rounded-xl">Planejamento Estratégico</Button>
                       <Button variant="outline" className="flex-1 h-12 border-white/10 bg-white/5 text-white font-black text-xs uppercase tracking-widest rounded-xl">Ver Banco de Mídia</Button>
                    </div>
                 </div>
@@ -137,12 +137,12 @@ export default function ClientesPage() {
           </Dialog>
         ))}
 
-        <Card className="card-hover border-2 border-dashed border-white/5 bg-transparent rounded-[2rem] cursor-pointer hover:border-indigo-500/30 hover:bg-indigo-500/5 group flex items-center justify-center min-h-[220px]" onClick={() => toast("Novo Cliente")}>
+        <Card className="card-hover border-2 border-dashed border-white/5 bg-transparent rounded-[2rem] cursor-pointer hover:border-purple-500/30 hover:bg-purple-500/15 group flex items-center justify-center min-h-[220px]" onClick={() => toast("Novo Cliente")}>
           <div className="text-center">
-            <div className="h-14 w-14 mx-auto rounded-2xl border border-white/10 bg-white/[0.04] flex items-center justify-center text-slate-500 group-hover:text-indigo-400 group-hover:border-indigo-500/30 transition-all mb-4">
+            <div className="h-14 w-14 mx-auto rounded-2xl border border-white/10 bg-white/[0.04] flex items-center justify-center text-slate-500 group-hover:text-fuchsia-400 group-hover:border-purple-500/30 transition-all mb-4">
               <Plus className="w-8 h-8" />
             </div>
-            <p className="text-xs font-black uppercase tracking-widest text-slate-500 group-hover:text-indigo-400 transition-colors italic">Adicionar Novo Parceiro</p>
+            <p className="text-xs font-black uppercase tracking-widest text-slate-500 group-hover:text-fuchsia-400 transition-colors italic">Adicionar Novo Parceiro</p>
           </div>
         </Card>
       </div>

@@ -63,24 +63,24 @@ export default function ReportsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-3xl font-black italic tracking-tighter text-white flex items-center gap-3">
-             Como estamos indo. <FilePieChart className="w-7 h-7 text-indigo-400" />
+             Como estamos indo. <FilePieChart className="w-7 h-7 text-fuchsia-400" />
           </h2>
           <p className="text-slate-500 text-xs font-bold uppercase tracking-widest pl-1">Veja de um jeito simples como estão os seus vídeos.</p>
         </div>
         <div className="flex gap-3">
-           <Button variant="outline" className="h-12 border-white/10 glass text-indigo-400 hover:text-white rounded-2xl bg-transparent font-black text-[10px] uppercase tracking-widest px-6">
+           <Button variant="outline" className="h-12 border-white/10 glass text-fuchsia-400 hover:text-white rounded-2xl bg-transparent font-black text-[10px] uppercase tracking-widest px-6">
               <Filter className="w-4 h-4 mr-2" /> Programar Envio
            </Button>
-           <Button onClick={() => setStep(2)} className="h-12 px-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-indigo-500/20">
+           <Button onClick={() => setStep(2)} className="h-12 px-8 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-500 text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-fuchsia-500/25">
              <TrendingUp className="w-4 h-4 mr-2" /> Criar Novo Resumo
            </Button>
         </div>
       </div>
 
       {step === 2 && (
-        <Card className="glass border-indigo-500/20 bg-indigo-500/5 rounded-[2.5rem] p-12 text-center animate-fade-in-up shadow-3xl">
+        <Card className="glass border-purple-400/20 bg-purple-500/15 rounded-[2.5rem] p-12 text-center animate-fade-in-up shadow-3xl">
            <div className="max-w-md mx-auto space-y-8">
-              <div className="h-20 w-20 bg-indigo-500/20 rounded-[2rem] flex items-center justify-center mx-auto text-indigo-400 border border-indigo-500/30">
+              <div className="h-20 w-20 bg-purple-600/20 rounded-[2rem] flex items-center justify-center mx-auto text-fuchsia-400 border border-purple-500/30">
                  <Sparkles className="w-10 h-10 animate-pulse" />
               </div>
               <div className="space-y-2">
@@ -91,7 +91,7 @@ export default function ReportsPage() {
                  <div className="bg-black/40 p-5 rounded-2xl border border-white/5 text-left flex items-center justify-between">
                     <div>
                         <p className="text-white font-black text-lg">Burger House</p>
-                        <p className="text-[10px] text-indigo-400 uppercase font-black tracking-widest">Mês de Março</p>
+                        <p className="text-[10px] text-fuchsia-400 uppercase font-black tracking-widest">Mês de Março</p>
                     </div>
                     <div className="h-8 w-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
                        <CheckCircle2 className="text-emerald-500 w-4 h-4" />
@@ -124,8 +124,8 @@ export default function ReportsPage() {
 
                  <div className="grid md:grid-cols-3 gap-6">
                     {[
-                       { label: "Pessoas que viram", val: "45.280", trend: "+12%", color: "text-indigo-400" },
-                       { label: "Dinheiro investido", val: "R$ 1.450", trend: "+5%", color: "text-purple-400" },
+                       { label: "Pessoas que viram", val: "45.280", trend: "+12%", color: "text-fuchsia-400" },
+                       { label: "Dinheiro investido", val: "R$ 1.450", trend: "+5%", color: "text-fuchsia-400" },
                        { label: "Pessoas que clicaram", val: "840", trend: "+24%", color: "text-emerald-400" },
                     ].map((m, i) => (
                        <div key={i} className="p-6 rounded-[2rem] bg-black/40 border border-white/5 relative overflow-hidden group">
@@ -139,10 +139,10 @@ export default function ReportsPage() {
                     ))}
                  </div>
 
-                 <div className="p-8 rounded-[2.5rem] bg-indigo-500/5 border border-indigo-500/10 space-y-6 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-6 opacity-10"><Brain className="w-24 h-24 text-indigo-400" /></div>
+                 <div className="p-8 rounded-[2.5rem] bg-purple-500/15 border border-purple-500/10 space-y-6 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-6 opacity-10"><Brain className="w-24 h-24 text-fuchsia-400" /></div>
                     <p className="text-[10px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-3">
-                       <Sparkles className="w-4 h-4 text-indigo-400" /> O que a IA descobriu
+                       <Sparkles className="w-4 h-4 text-fuchsia-400" /> O que a IA descobriu
                     </p>
                     <div className="text-lg text-slate-300 leading-relaxed font-medium italic pr-12">
                        {aiSummary}
@@ -157,7 +157,7 @@ export default function ReportsPage() {
                  <div className="space-y-6">
                     <div className="flex justify-between text-xs font-black text-white uppercase tracking-widest"><span>Vendas</span> <span>85%</span></div>
                     <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
-                       <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-600 w-[85%] shadow-[0_0_10px_rgba(99,102,241,0.5)]" />
+                       <div className="h-full bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-500 w-[85%] shadow-[0_0_10px_rgba(99,102,241,0.5)]" />
                     </div>
                     <p className="text-[11px] text-slate-500 leading-relaxed font-bold italic">Falta só 15% para batermos o que combinamos no início do mês! 🚀</p>
                  </div>
@@ -175,7 +175,7 @@ export default function ReportsPage() {
                 {reports.map((report) => (
                   <div key={report.id} className="p-8 flex items-center justify-between hover:bg-white/[0.02] transition-all group cursor-pointer">
                     <div className="flex items-center gap-6">
-                      <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:border-indigo-500/30 transition-all">
+                      <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:border-purple-500/30 transition-all">
                         <FileText className="w-6 h-6" />
                       </div>
                       <div>
@@ -193,10 +193,10 @@ export default function ReportsPage() {
             </CardContent>
           </Card>
 
-          <Card className="glass border-indigo-500/20 rounded-[2.5rem] p-10 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex flex-col justify-center text-center shadow-3xl">
+          <Card className="glass border-purple-400/20 rounded-[2.5rem] p-10 bg-gradient-to-br from-purple-500/15 to-purple-500/10 flex flex-col justify-center text-center shadow-3xl">
              <div className="space-y-6">
                 <div className="h-20 w-20 bg-white/10 rounded-full mx-auto flex items-center justify-center border border-white/10">
-                   <Mail className="w-10 h-10 text-indigo-400" />
+                   <Mail className="w-10 h-10 text-fuchsia-400" />
                 </div>
                 <div className="space-y-2">
                    <h3 className="text-white font-black italic text-2xl tracking-tighter">Mandar para o Cliente</h3>

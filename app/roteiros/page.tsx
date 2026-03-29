@@ -73,7 +73,7 @@ export default function RoteirosPage() {
 
       <div className="grid lg:grid-cols-5 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <Card className="glass border-white/[0.06] rounded-[2.5rem] overflow-hidden shadow-2xl bg-[#111113]">
+          <Card className="glass border-white/[0.06] rounded-[2.5rem] overflow-hidden shadow-2xl bg-[#0a0616]">
              <CardHeader className="p-8 pb-4">
                 <CardTitle className="text-white text-lg font-black italic flex items-center gap-2 tracking-tighter">
                   O que vamos gravar?
@@ -85,7 +85,7 @@ export default function RoteirosPage() {
                     <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Para onde é esse vídeo?</Label>
                     <Select value={objective} onValueChange={(val) => setObjective(val || "reels")}>
                        <SelectTrigger className="bg-black/40 border-white/10 h-12 rounded-2xl text-white font-bold"><SelectValue /></SelectTrigger>
-                       <SelectContent className="bg-[#111113] border-white/10 rounded-2xl">
+                       <SelectContent className="bg-[#0a0616] border-white/10 rounded-2xl">
                           <SelectItem value="reels" className="rounded-xl font-bold py-3 text-xs">Reels Viral (Engajamento)</SelectItem>
                           <SelectItem value="ads" className="rounded-xl font-bold py-3 text-xs">Anúncio (Vender mais)</SelectItem>
                           <SelectItem value="educational" className="rounded-xl font-bold py-3 text-xs">Aula / Dica (Autoridade)</SelectItem>
@@ -110,13 +110,13 @@ export default function RoteirosPage() {
                       className="bg-black/40 border-white/10 rounded-2xl text-white font-medium min-h-[100px]" 
                     />
                  </div>
-                 <Button onClick={handleGenerate} disabled={isBusy} className="w-full h-14 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-500/20">
+                 <Button onClick={handleGenerate} disabled={isBusy} className="w-full h-14 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-fuchsia-500/30">
                     {isBusy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Pensando...</> : "Gerar Roteiro Mágico ✨"}
                  </Button>
              </CardContent>
           </Card>
 
-          <Card className="glass border-white/[0.06] rounded-[2.5rem] p-8 bg-[#111113]">
+          <Card className="glass border-white/[0.06] rounded-[2.5rem] p-8 bg-[#0a0616]">
              <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6 flex items-center gap-2 italic"><History className="w-4 h-4" /> Histórico</h3>
              <div className="space-y-3">
                 {["Review de Burger", "Promoção Sushi", "Bastidores Docinho"].map((item, i) => (
@@ -168,17 +168,17 @@ export default function RoteirosPage() {
              </CardContent>
              {script && (
                 <div className="p-10 pt-0">
-                   <div className="p-6 rounded-[2rem] bg-indigo-600/10 border border-indigo-500/20 flex flex-col sm:flex-row items-center justify-between gap-6 backdrop-blur-xl">
+                   <div className="p-6 rounded-[2rem] bg-purple-600/10 border border-purple-400/20 flex flex-col sm:flex-row items-center justify-between gap-6 backdrop-blur-xl">
                       <div className="flex items-center gap-4">
-                         <div className="h-12 w-12 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 border border-indigo-500/30">
+                         <div className="h-12 w-12 rounded-2xl bg-purple-600/20 flex items-center justify-center text-fuchsia-400 border border-purple-500/30">
                             <Video className="w-6 h-6" />
                          </div>
                          <div>
                             <p className="text-[10px] font-black text-white uppercase tracking-widest">Gostou? Mande agora pro time!</p>
-                            <p className="text-[9px] text-indigo-400 font-black uppercase tracking-[0.2em]">Envia direto para o WhatsApp da Produção</p>
+                            <p className="text-[9px] text-fuchsia-400 font-black uppercase tracking-[0.2em]">Envia direto para o WhatsApp da Produção</p>
                          </div>
                       </div>
-                      <Button className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-black text-[10px] uppercase tracking-widest px-8 h-12 rounded-xl shadow-lg shadow-indigo-500/20">Mandar agora!</Button>
+                      <Button className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white font-black text-[10px] uppercase tracking-widest px-8 h-12 rounded-xl shadow-lg shadow-fuchsia-500/25">Mandar agora!</Button>
                    </div>
                 </div>
              )}

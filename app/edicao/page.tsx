@@ -35,7 +35,7 @@ export default function EdicaoPage() {
 
   const stages = [
     { title: "Vídeos que chegaram", id: "RAW", color: "border-slate-500/20 bg-slate-500/5", icon: PlayCircle },
-    { title: "Editando agora", id: "EDITING", color: "border-indigo-500/20 bg-indigo-500/5", icon: Scissors },
+    { title: "Editando agora", id: "EDITING", color: "border-purple-400/20 bg-purple-500/15", icon: Scissors },
     { title: "Pronto pra você ver", id: "APPROVAL", color: "border-amber-500/20 bg-amber-500/5", icon: Eye },
     { title: "Já pode postar!", id: "FINAL", color: "border-emerald-500/20 bg-emerald-500/5", icon: CheckCircle2 },
   ]
@@ -45,13 +45,13 @@ export default function EdicaoPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-3xl font-black italic tracking-tighter text-white flex items-center gap-3">
-             Fazendo os Vídeos. <Scissors className="w-7 h-7 text-indigo-400" />
+             Fazendo os Vídeos. <Scissors className="w-7 h-7 text-fuchsia-400" />
           </h2>
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest pl-1">Aqui você vê quais vídeos estão sendo feitos e quais já estão prontos.</p>
         </div>
         <div className="flex items-center gap-2 glass p-1.5 rounded-2xl border-white/5">
-           <button onClick={() => setView("kanban")} className={`h-9 px-4 rounded-xl text-xs font-bold transition-all ${view === "kanban" ? "bg-indigo-500 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"}`}>Kanban</button>
-           <button onClick={() => setView("list")} className={`h-9 px-4 rounded-xl text-xs font-bold transition-all ${view === "list" ? "bg-indigo-500 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"}`}>Lista</button>
+           <button onClick={() => setView("kanban")} className={`h-9 px-4 rounded-xl text-xs font-bold transition-all ${view === "kanban" ? "bg-purple-500 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"}`}>Kanban</button>
+           <button onClick={() => setView("list")} className={`h-9 px-4 rounded-xl text-xs font-bold transition-all ${view === "list" ? "bg-purple-500 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"}`}>Lista</button>
         </div>
       </div>
 
@@ -67,7 +67,7 @@ export default function EdicaoPage() {
 
             <div className="space-y-4">
               {pipeline.filter(p => p.stage === stage.id).map((item) => (
-                <Card key={item.id} className="glass border-white/[0.06] rounded-2xl p-4 space-y-3 cursor-grab hover:border-indigo-500/30 transition-all group relative">
+                <Card key={item.id} className="glass border-white/[0.06] rounded-2xl p-4 space-y-3 cursor-grab hover:border-purple-500/30 transition-all group relative">
                   <div className="flex justify-between items-start">
                      <p className={`text-[9px] font-black uppercase tracking-tighter px-1.5 py-0.5 rounded border ${item.priority === 'HIGH' ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' : 'bg-slate-500/10 text-slate-500 border-white/10'}`}>
                         {item.priority}
@@ -75,13 +75,13 @@ export default function EdicaoPage() {
                      <button className="h-6 w-6 rounded-lg hover:bg-white/10 flex items-center justify-center text-slate-500"><MoreHorizontal className="w-3.5 h-3.5" /></button>
                   </div>
                   <div>
-                     <p className="text-[11px] font-bold text-slate-200 leading-snug group-hover:text-indigo-300 transition-colors">{item.title}</p>
+                     <p className="text-[11px] font-bold text-slate-200 leading-snug group-hover:text-fuchsia-300 transition-colors">{item.title}</p>
                      <p className="text-[10px] text-slate-500 mt-0.5 font-medium">{item.client}</p>
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-white/[0.04]">
                      <div className="flex items-center gap-1.5">
-                        <div className="h-5 w-5 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
-                           <User className="w-3 h-3 text-indigo-400" />
+                        <div className="h-5 w-5 rounded-full bg-purple-600/20 border border-purple-500/30 flex items-center justify-center">
+                           <User className="w-3 h-3 text-fuchsia-400" />
                         </div>
                         <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">{item.editor}</span>
                      </div>

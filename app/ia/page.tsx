@@ -96,7 +96,7 @@ export default function IAModulePage() {
       </div>
 
       <Tabs defaultValue="auditoria" className="w-full">
-        <TabsList className="bg-[#111113] border border-[#1e1e20] p-1.5 rounded-2xl mb-12 flex h-auto overflow-x-auto justify-start border-white/5">
+        <TabsList className="bg-[#0a0616] border border-[#1a1030] p-1.5 rounded-2xl mb-12 flex h-auto overflow-x-auto justify-start border-white/5">
           {[
             { id: "auditoria", label: "Ver o que melhorar no Instagram", icon: TrendingUp },
             { id: "criativos", label: "Criar Imagens Mágicas", icon: ImageIcon },
@@ -114,7 +114,7 @@ export default function IAModulePage() {
         <TabsContent value="auditoria" className="animate-fade-in-up">
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-5 space-y-8">
-                <Card className="bg-[#111113] border-[#1e1e20] rounded-3xl p-8 border-white/5 shadow-2xl">
+                <Card className="bg-[#0a0616] border-[#1a1030] rounded-3xl p-8 border-white/5 shadow-2xl">
                   <h3 className="text-white font-bold mb-6 flex items-center gap-2 tracking-tight italic">Análise do Instagram</h3>
                   <div className="space-y-5">
                     <div className="space-y-2">
@@ -123,13 +123,13 @@ export default function IAModulePage() {
                            placeholder="@perfil ou link do instagram..." 
                            value={instagramLink}
                            onChange={(e) => setInstagramLink(e.target.value)}
-                           className="bg-black/40 border-white/5 h-12 text-sm rounded-xl focus:border-indigo-500/50 transition-all font-medium" 
+                           className="bg-black/40 border-white/5 h-12 text-sm rounded-xl focus:border-purple-500/50 transition-all font-medium" 
                        />
                     </div>
                     <Button 
                         onClick={handleGenerateAuditoria} 
                         disabled={auditorBusy}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs uppercase tracking-[0.2em] h-12 rounded-xl shadow-lg shadow-indigo-500/20"
+                        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-black text-xs uppercase tracking-[0.2em] h-12 rounded-xl shadow-lg shadow-fuchsia-500/25"
                     >
                         {auditorBusy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Conversando com a IA...</> : "Ver o que melhorar"}
                     </Button>
@@ -144,7 +144,7 @@ export default function IAModulePage() {
                    { label: "Melhor Horário", value: "20:00", desc: "Noite (Sexta/Sab)", trend: "none" },
                    { label: "O que postar mais", value: "Reels", desc: "Vídeos Curtos", trend: "up" },
                  ].map((stat, i) => (
-                   <div key={i} className="p-6 rounded-2xl bg-[#111113] border border-[#1e1e20] text-center">
+                   <div key={i} className="p-6 rounded-2xl bg-[#0a0616] border border-[#1a1030] text-center">
                      <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">{stat.label}</p>
                      <p className="text-2xl font-black text-white italic">{stat.value}</p>
                      <p className="text-[10px] text-slate-600 mt-1 font-bold">{stat.desc}</p>
@@ -153,8 +153,8 @@ export default function IAModulePage() {
                </div>
 
                {auditorChat.messages.length > 0 && (
-                  <Card className="bg-[#111113] border-[#1e1e20] rounded-3xl p-8 animate-fade-in-up">
-                     <h4 className="text-indigo-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Card className="bg-[#0a0616] border-[#1a1030] rounded-3xl p-8 animate-fade-in-up">
+                     <h4 className="text-fuchsia-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
                         <Brain className="w-4 h-4" /> Dicas da IA
                      </h4>
                      <div className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap italic">
@@ -168,14 +168,14 @@ export default function IAModulePage() {
 
         <TabsContent value="ads" className="animate-fade-in-up">
             <div className="grid lg:grid-cols-2 gap-10 items-start">
-                <Card className="bg-[#111113] border-white/5 rounded-[2.5rem] p-10 shadow-3xl">
+                <Card className="bg-[#0a0616] border-white/5 rounded-[2.5rem] p-10 shadow-3xl">
                    <h3 className="text-xl font-black text-white mb-8 italic tracking-tighter">Planejador de Vendas</h3>
                    <div className="space-y-8">
                       <div className="space-y-4">
                          <Label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">O que você quer fazer?</Label>
                          <Select value={adObjective} onValueChange={(val) => setAdObjective(val || "leads")}>
                             <SelectTrigger className="bg-black/40 border-white/10 h-14 rounded-2xl text-white font-bold hover:bg-white/5 transition-all outline-none md:w-full"><SelectValue /></SelectTrigger>
-                            <SelectContent className="bg-[#111113] border-white/10 rounded-2xl">
+                            <SelectContent className="bg-[#0a0616] border-white/10 rounded-2xl">
                                <SelectItem value="leads" className="rounded-xl font-bold py-3">⚡ Mais mensagens (Vendas)</SelectItem>
                                <SelectItem value="sales" className="rounded-xl font-bold py-3">📍 Pessoas vindo na loja</SelectItem>
                                <SelectItem value="brand" className="rounded-xl font-bold py-3">💎 Ficar famoso (Marca)</SelectItem>
@@ -194,12 +194,12 @@ export default function IAModulePage() {
 
                 {adsChat.messages.length > 0 ? (
                    <div className="space-y-6 animate-fade-in-up">
-                      <div className="p-10 rounded-[2.5rem] bg-indigo-600/10 border border-indigo-500/20 shadow-2xl backdrop-blur-xl">
+                      <div className="p-10 rounded-[2.5rem] bg-purple-600/10 border border-purple-400/20 shadow-2xl backdrop-blur-xl">
                          <div className="flex items-center justify-between mb-8">
-                            <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] flex items-center gap-2">
+                            <p className="text-[10px] font-black text-fuchsia-400 uppercase tracking-[0.3em] flex items-center gap-2">
                                <Activity className="w-4 h-4" /> Resultado Esperado
                             </p>
-                            <Button size="icon" variant="ghost" className="h-8 w-8 text-indigo-400 hover:bg-indigo-500/10"><Download className="w-4 h-4" /></Button>
+                            <Button size="icon" variant="ghost" className="h-8 w-8 text-fuchsia-400 hover:bg-purple-500/15"><Download className="w-4 h-4" /></Button>
                          </div>
                          <div className="text-sm text-slate-300 leading-relaxed font-medium whitespace-pre-wrap">
                             {getTextFromMessages(adsChat.messages)}
@@ -217,7 +217,7 @@ export default function IAModulePage() {
 
          <TabsContent value="proposta" className="animate-fade-in-up">
             <div className="grid lg:grid-cols-2 gap-10">
-               <Card className="bg-[#111113] border-white/5 rounded-[2.5rem] p-10 shadow-3xl">
+               <Card className="bg-[#0a0616] border-white/5 rounded-[2.5rem] p-10 shadow-3xl">
                   <h3 className="text-xl font-black text-white mb-8 italic tracking-tighter">Criar Plano de Vendas Exclusivo</h3>
                   <div className="space-y-8">
                      <div className="space-y-4">
@@ -232,7 +232,7 @@ export default function IAModulePage() {
                      <Button 
                         onClick={handleGenerateProposta}
                         disabled={proposalBusy}
-                        className="w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white font-black text-xs uppercase tracking-[0.2em] h-14 rounded-2xl border-0 shadow-lg shadow-emerald-500/20"
+                        className="w-full bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 text-white font-black text-xs uppercase tracking-[0.2em] h-14 rounded-2xl border-0 shadow-lg shadow-fuchsia-500/30"
                      >
                         {proposalBusy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Gerando...</> : "Criar Plano com IA"}
                      </Button>
